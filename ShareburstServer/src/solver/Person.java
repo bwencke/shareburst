@@ -8,38 +8,52 @@ public class Person {
 	 */
 	
 	//location in array of each flavor
-	final int RED = 0;
-	final int ORANGE = 1;
-	final int YELLOW = 2;
-	final int PINK = 3;
-	
-	int preferences[] = new int[4];		//	the desired distribution of starbursts
-	int distribute[] = new int [4]; 	//  the final distribution
-	
+	final int ORANGE = 0;
+	final int PINK = 1;
+	final int RED = 2;
+	final int YELLOW = 3;
+
+	private int preferences[] = new int[4];		//	the desired distribution of starbursts
+	private int distribute[] = new int[4]; 	//  the final distribution
 	
 	/**
 	 * Creates a new person with given preferences
+	 * @param orange	desired orange
+	 * @param pink		desired pink 
 	 * @param red		desired red
-	 * @param orange	desired orange 
-	 * @param pink		desired pink
 	 * @param yellow	desired yellow
 	 */
-	public Person(int red, int orange, int pink, int yellow){
-		preferences[RED] = red;
+	public Person(int orange, int pink, int red, int yellow){
 		preferences[ORANGE] = orange;
-		preferences[YELLOW] = yellow;
 		preferences[PINK] = pink;
+		preferences[RED] = red;
+		preferences[YELLOW] = yellow;
 	}
 	
 	/**
 	 * Creates a new Person with the given preferences
-	 * @param pref array of preferences in the order red, orange, pink, yellow
+	 * @param pref array of preferences in the order orange, pink, red, yellow
 	 */
 	public Person(int [] pref) {
-		
-		preferences[RED] = pref[0];
-		preferences[ORANGE] = pref[1];
-		preferences[PINK] = pref[2];
-		preferences[YELLOW] = pref[3];
+		preferences[ORANGE] = pref[ORANGE];
+		preferences[PINK] = pref[PINK];
+		preferences[RED] = pref[RED];
+		preferences[YELLOW] = pref[YELLOW];
+	}
+	
+	public int[] getPreferences() {
+		return preferences;
+	}
+
+	public void setPreferences(int[] preferences) {
+		this.preferences = preferences;
+	}
+
+	public int[] getDistribute() {
+		return distribute;
+	}
+
+	public void setDistribute(int[] distribute) {
+		this.distribute = distribute;
 	}
 }
