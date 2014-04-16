@@ -1,23 +1,34 @@
 package com.example.shareburst;
 
+import java.util.List;
+
+import retrofit.RestAdapter;
+import retrofit.http.GET;
+import retrofit.http.POST;
+import retrofit.http.Path;
+
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
+	
+	public final static String API_URL = "https://api.github.com";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		new RestTask().execute();
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -61,4 +72,31 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	  class RestTask extends AsyncTask<String, Void, List<User>> {
+
+		    protected List<User> doInBackground(String... urls) {
+		    	
+			    	RestAdapter restAdapter = new RestAdapter.Builder()
+			        .setEndpoint(API_URL)
+			        .build();
+	
+				    // Create an instance of our GitHub API interface.
+				    RestApi restApi = restAdapter.create(RestApi.class);
+				
+				    // Fetch and print a list of the contributors to this library.
+				    User user = restApi.getUser("bwencke");
+				    //Toast.makeText(getApplicationContext(), res.toString(), Toast.LENGTH_LONG).show();
+				    System.out.println(user.name);
+//				    for (User user : res) {
+//				    	System.out.println(user.name);
+//				    }
+				return null;
+		    }
+
+		    protected void onPostExecute(List<User> users) {
+		        // TODO: check this.exception 
+		        // TODO: do something with the feed
+		    }
+		}
+    
 }

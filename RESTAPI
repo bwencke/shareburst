@@ -1,0 +1,14 @@
+get user info:
+request: GET /user/[user]
+response:
+<user>
+	<name>[user]</name>
+	<preferences>
+		<red>2</red>
+		<orange>4</orange>
+		<yellow>2</yellow>
+		<pink>2</pink>
+	</preferences>
+</user>
+
+
