@@ -24,7 +24,9 @@ public class UserService {
     @GET
     @Path("/{userName}")
     public User get(@PathParam("userName") String userName) {
-        return new User(userName);
+        User newUser = new User(userName);
+    	users.add(newUser);
+    	return newUser;
     }
 
 }
