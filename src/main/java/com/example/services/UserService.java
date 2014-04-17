@@ -17,8 +17,8 @@ public class UserService {
 	ArrayList<User> users = new ArrayList<User>();
 
     @GET
-    public ArrayList<User> get() {
-        return users;
+    public Object[] get() {
+        return users.toArray();
     }
     
     @GET
