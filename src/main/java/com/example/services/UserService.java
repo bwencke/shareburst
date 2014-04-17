@@ -3,6 +3,7 @@ package com.example.services;
 import java.util.ArrayList;
 
 import com.example.models.User;
+import com.example.models.UserList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,8 +18,10 @@ public class UserService {
 	ArrayList<User> users = new ArrayList<User>();
 
     @GET
-    public ArrayList<User> get() {
-        return users;
+    public UserList get() {
+        UserList userList = new UserList();
+        userList.setList(users);
+    	return userList;
     }
     
     @GET
