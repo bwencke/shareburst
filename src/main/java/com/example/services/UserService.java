@@ -3,7 +3,7 @@ package com.example.services;
 import java.util.ArrayList;
 
 import com.example.models.User;
-import com.example.models.UserList;
+import com.example.models.ResponseList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -15,13 +15,13 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class UserService {
 	
-	ArrayList<User> users = new ArrayList<User>();
+	ArrayList<Object> users = new ArrayList<Object>();
 
     @GET
-    public UserList get() {
-        UserList userList = new UserList();
-        userList.setList(users);
-    	return userList;
+    public ResponseList get() {
+        ResponseList responseList = new ResponseList();
+        responseList.setList(users);
+    	return responseList;
     }
     
     @GET
