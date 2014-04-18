@@ -6,7 +6,7 @@ import retrofit.http.Path;
 public interface RestApi {
 
 	// GET USER
-    @GET("/user/{name}")
+    @GET("/users/{name}")
     User getUser(
     		@Path("name") String name
     );

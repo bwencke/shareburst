@@ -3,10 +3,6 @@ package com.example.shareburst;
 import java.util.List;
 
 import retrofit.RestAdapter;
-import retrofit.http.GET;
-import retrofit.http.POST;
-import retrofit.http.Path;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.AsyncTask;
@@ -20,7 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	public final static String API_URL = "https://api.github.com";
+	public final static String API_URL = "http://shareburst.herokuapp.com/";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +67,14 @@ public class MainActivity extends Activity {
 			return rootView;
 		}
 	}
+	
+	public void alert(String str) {
+		Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
+	}
 
-	  class RestTask extends AsyncTask<String, Void, List<User>> {
+	  class RestTask extends AsyncTask<String, Void, User> {
 
-		    protected List<User> doInBackground(String... urls) {
+		    protected User doInBackground(String... urls) {
 		    	
 			    	RestAdapter restAdapter = new RestAdapter.Builder()
 			        .setEndpoint(API_URL)
@@ -84,18 +84,19 @@ public class MainActivity extends Activity {
 				    RestApi restApi = restAdapter.create(RestApi.class);
 				
 				    // Fetch and print a list of the contributors to this library.
-				    User user = restApi.getUser("bwencke");
+				    User user = restApi.getUser("trohman");
 				    //Toast.makeText(getApplicationContext(), res.toString(), Toast.LENGTH_LONG).show();
-				    System.out.println(user.name);
+				    System.out.println(user.getUserName());
 //				    for (User user : res) {
 //				    	System.out.println(user.name);
 //				    }
-				return null;
+				return user;
 		    }
 
-		    protected void onPostExecute(List<User> users) {
+		    protected void onPostExecute(User user) {
 		        // TODO: check this.exception 
 		        // TODO: do something with the feed
+		    	alert(user.getFirstName() + "\n" + user.getPassword());
 		    }
 		}
     

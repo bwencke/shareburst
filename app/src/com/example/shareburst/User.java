@@ -1,24 +1,60 @@
 package com.example.shareburst;
 
 public class User {
-	
-	enum prefs {
-		ORANGE, PINK, RED, YELLOW
+
+	private String firstName;
+	private String lastName;
+	private String userName;
+	private String password;
+	private Preferences preferences;
+
+	public User() {
+		preferences = new Preferences();
 	}
 	
-	public String name;
-	int preferences[];
+	public User(String userName) {
+		this();
+		this.userName = userName;
+	}
 	
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public int[] getPreferences() {
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Preferences getPreferences() {
 		return preferences;
 	}
-	public void setPreferences(int[] preferences) {
+
+	public void setPreferences(Preferences preferences) {
 		this.preferences = preferences;
 	}
+	
 }
