@@ -11,6 +11,7 @@ public class User {
 	private String lastName;
 	private String userName;
 	private String password;
+	private String bsField
 	private Preferences preferences;
 
 	public User() {
