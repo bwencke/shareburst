@@ -3,6 +3,7 @@ package com.example.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.models.Preferences;
 import com.example.models.User;
 import com.example.models.ResponseList;
 
@@ -41,8 +42,25 @@ public class UserService {
     }
     
     @PUT
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public User putTodo(User user) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public User putUser(User user) {
+    	for(User u : users) {
+    		if(u.getUserName().equals(user.getUserName())) {
+    			if(user.getFirstName() != null) {
+    				u.setFirstName(user.getFirstName());
+    			}
+    			if(user.getLastName() != null) {
+    				u.setLastName(user.getLastName());
+    			}
+    			if(user.getPassword() != null) {
+    				u.setPassword(user.getPassword());
+    			}
+    			if(user.getPreferences() != null) {
+    				u.setPreferences(user.getPreferences());
+    			}
+    			return u;
+    		}
+    	}
     	users.add(user);
     	return user;
     }
