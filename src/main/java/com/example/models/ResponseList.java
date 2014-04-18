@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "responseList")
+@XmlRootElement
 public class ResponseList {
 
     private List<Object> list;
