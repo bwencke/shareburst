@@ -50,7 +50,7 @@ REST API:
 	GROUPS: Used to group users and the starbursts they are sharing.
 
 		request: GET /groups/
-		request body: the group with users and number of packets
+		request body: the group with usernames and number of packets
 		response body: the group with assignments
 
 		A REST REQUEST BODY FOR A GROUP SHOULD LOOK LIKE:
