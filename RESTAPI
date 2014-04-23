@@ -4,8 +4,23 @@ REST API:
 
 	USERS: Used to login, update preferences, and add users to a group.
 
-		request: GET /users/
-		response: array of all the users
+		request: PUT /users/
+		request body: the user who is being updated or created
+		response: the user who is being updated or created
+
+		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
+		{
+			"userName": "bwencke",
+			"password": "passypass"
+			"firstName": "Ben",
+			"lastName": "Wencke",
+			"preferences": {
+				"orange": 5,
+				"pink": 0,
+				"red": 3,
+				"yellow": 4
+			}
+		}
 
 		request: GET /users/{user}
 		response: the user whose username matches {user}
@@ -23,101 +38,73 @@ REST API:
 			}
 		}
 
-		request: PUT /users/
-		request body: the user who is being updated or created
-		note: requires authentication if user already exists. the user must be updating himself
-
-		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
-		{
-			"userName": "bwencke",
-			"password": "passypass"
-			"firstName": "Ben",
-			"lastName": "Wencke",
-			"preferences": {
-				"orange": 5,
-				"pink": 0,
-				"red": 3,
-				"yellow": 4
-			}
-		}
-
 		request: DELETE /users/
 		request body: the userName of the user to be deleted
-		note: requires authentication. the user must be deleting himself
+		response: "Success" upon success
 
 		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
 		{
 			"userName": "bwencke"
 		}
 
-	GROUPS: Used to group users and the starburst they are sharing.
-
-		request: GET /groups/
-		response: array of all the groups
-
-		request: GET /groups/{user}
-		response: array of all the groups that the user whose username is {user} belongs to
-
-		A REST RESPONSE FOR A GROUP SHOULD LOOK LIKE:
-		{
-			"groupName": "The Three Musketeers",
-			"solved": true,
-			"users": [{
-					"userName": "bwencke",
-					"orange": 3,
-					"pink": 1,
-					"red": 5,
-					"yellow": 3
-				},
-				{
-					"userName": "jdepp",
-					"orange": 4,
-					"pink": 0,
-					"red": 5,
-					"yellow": 3
-				},
-				{
-					"userName": "eflick",
-					"orange": 0,
-					"pink": 11,
-					"red": 0,
-					"yellow": 1
-				}
-			]
-		}
+	GROUPS: Used to group users and the starbursts they are sharing.
 
 		request: PUT /groups/
-		request body: the new or updated group
-		note: requires authentication if group exists. the user must belong to the group.
+		request body: the group with users and number of packets
+		response body: the group with assignments
 
 		A REST REQUEST BODY FOR A GROUP SHOULD LOOK LIKE:
 		{
-			"groupName": "The Two Musketeers",
-			"solved": false,
+			"users": [{
+					"userName": "bwencke"
+				},
+				{
+					"userName": "jdepp"
+				}
+			],
+			"nPackets": 2
+		}
+		
+		A REST RESPONSE BODY FOR A GROUP SHOULD LOOK LIKE:
+		{
 			"users": [{
 					"userName": "bwencke",
-					"orange": 3,
-					"pink": 1,
-					"red": 5,
-					"yellow": 3
+					"firstName": "Ben",
+					"lastName": "Wencke",
+					"preferences": {
+						"orange": 5,
+						"pink": 0,
+						"red": 3,
+						"yellow": 4
 				},
 				{
 					"userName": "jdepp",
-					"orange": 4,
-					"pink": 0,
-					"red": 5,
+					"firstName": "Johnny",
+					"lastName": "Depp",
+					"preferences": {
+						"orange": 4,
+						"pink": 0,
+						"red": 5,
+						"yellow": 3
+					}
+				}
+			],
+			"nPackets": 2
+			"assignments": [{
+					"userName": "bwencke", 
+					"orange": 3,
+					"pink": 3,
+					"red": 3,
+					"yellow": 3
+				},
+				{
+					"userName": "jdepp", 
+					"orange": 3,
+					"pink": 3,
+					"red": 3,
 					"yellow": 3
 				}
 			]
-		}
-
-		request: DELETE /groups/
-		request body: the group to be deleted
-		note: requires authentication. the user must belong to the group.
-
-		A REST REQUEST BODY FOR A DELETE GROUP SHOULD LOOK LIKE:
-		{
-			"groupName": "The Two Musketeers"
 		}
 
 AUTHENTICATION:
@@ -129,6 +116,8 @@ We can use Basic HTTP Authentication to protect security and privacy of users. I
         final int flags = 0;
         return "Basic " + Base64.encodeToString(userAndPassword.getBytes(), flags);
     }
+    
+note: Bryan doesn't know when he needs to do this.
 
 ERRORS:
 
