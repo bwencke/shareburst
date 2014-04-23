@@ -11,7 +11,7 @@ REST API:
 		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
 		{
 			"userName": "bwencke",
-			"password": "passypass"
+			"password": "passypass",
 			"firstName": "Ben",
 			"lastName": "Wencke",
 			"preferences": {
@@ -49,47 +49,20 @@ REST API:
 
 	GROUPS: Used to group users and the starbursts they are sharing.
 
-		request: PUT /groups/
+		request: GET /groups/
 		request body: the group with users and number of packets
 		response body: the group with assignments
 
 		A REST REQUEST BODY FOR A GROUP SHOULD LOOK LIKE:
 		{
-			"users": [{
-					"userName": "bwencke"
-				},
-				{
-					"userName": "jdepp"
-				}
-			],
+			"userNames": ["bwencke", "jdepp"],
 			"nPackets": 2
 		}
 		
 		A REST RESPONSE BODY FOR A GROUP SHOULD LOOK LIKE:
 		{
-			"users": [{
-					"userName": "bwencke",
-					"firstName": "Ben",
-					"lastName": "Wencke",
-					"preferences": {
-						"orange": 5,
-						"pink": 0,
-						"red": 3,
-						"yellow": 4
-				},
-				{
-					"userName": "jdepp",
-					"firstName": "Johnny",
-					"lastName": "Depp",
-					"preferences": {
-						"orange": 4,
-						"pink": 0,
-						"red": 5,
-						"yellow": 3
-					}
-				}
-			],
-			"nPackets": 2
+			"userNames": ["bwencke", "jdepp"],
+			"nPackets": 2,
 			"assignments": [{
 					"userName": "bwencke", 
 					"orange": 3,
@@ -117,7 +90,7 @@ We can use Basic HTTP Authentication to protect security and privacy of users. I
         return "Basic " + Base64.encodeToString(userAndPassword.getBytes(), flags);
     }
     
-note: Bryan doesn't know when he needs to do this.
+NOTE: Bryan doesn't understand the authentication part yet.
 
 ERRORS:
 
