@@ -2,10 +2,25 @@ NOTE: The goal of using a REST API is to create an interface between the client 
 
 REST API:
 
-	USERS: Used to login, update preferences, and add users to a group.
+	USERS: Used to create users, update users, get user information, login, and delete users.
 
-		request: GET /users/
-		response: array of all the users
+		request: PUT /users/
+		request body: the user who is being updated or created
+		response: the user who is being updated or created
+
+		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
+		{
+			"userName": "bwencke",
+			"password": "passypass",
+			"firstName": "Ben",
+			"lastName": "Wencke",
+			"preferences": {
+				"orange": 5,
+				"pink": 0,
+				"red": 3,
+				"yellow": 4
+			}
+		}
 
 		request: GET /users/{user}
 		response: the user whose username matches {user}
@@ -22,102 +37,57 @@ REST API:
 				"yellow": 4
 			}
 		}
-
-		request: PUT /users/
-		request body: the user who is being updated or created
-		note: requires authentication if user already exists. the user must be updating himself
-
-		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
+		
+		request: PUT /users/login/
+		request body: the user who is trying to log in
+		response: a boolean representing whether the userName and password match
+		
+		A REST REQUEST FOR A USER LOGIN SHOULD LOOK LIKE:
 		{
 			"userName": "bwencke",
-			"password": "passypass"
-			"firstName": "Ben",
-			"lastName": "Wencke",
-			"preferences": {
-				"orange": 5,
-				"pink": 0,
-				"red": 3,
-				"yellow": 4
-			}
+			"password": "unicornfarts"
 		}
 
 		request: DELETE /users/
 		request body: the userName of the user to be deleted
-		note: requires authentication. the user must be deleting himself
+		response: "Success" upon success
 
 		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
 		{
 			"userName": "bwencke"
 		}
 
-	GROUPS: Used to group users and the starburst they are sharing.
-
-		request: GET /groups/
-		response: array of all the groups
-
-		request: GET /groups/{user}
-		response: array of all the groups that the user whose username is {user} belongs to
-
-		A REST RESPONSE FOR A GROUP SHOULD LOOK LIKE:
-		{
-			"groupName": "The Three Musketeers",
-			"solved": true,
-			"users": [{
-					"userName": "bwencke",
-					"orange": 3,
-					"pink": 1,
-					"red": 5,
-					"yellow": 3
-				},
-				{
-					"userName": "jdepp",
-					"orange": 4,
-					"pink": 0,
-					"red": 5,
-					"yellow": 3
-				},
-				{
-					"userName": "eflick",
-					"orange": 0,
-					"pink": 11,
-					"red": 0,
-					"yellow": 1
-				}
-			]
-		}
+	GROUPS: Used to group users and assign Starbursts.
 
 		request: PUT /groups/
-		request body: the new or updated group
-		note: requires authentication if group exists. the user must belong to the group.
+		request body: the group with usernames and number of packets
+		response body: the group with assignments
 
 		A REST REQUEST BODY FOR A GROUP SHOULD LOOK LIKE:
 		{
-			"groupName": "The Two Musketeers",
-			"solved": false,
-			"users": [{
-					"userName": "bwencke",
+			"userNames": ["bwencke", "jdepp"],
+			"nPackets": 2
+		}
+		
+		A REST RESPONSE BODY FOR A GROUP SHOULD LOOK LIKE:
+		{
+			"userNames": ["bwencke", "jdepp"],
+			"nPackets": 2,
+			"assignments": [{
+					"userName": "bwencke", 
 					"orange": 3,
-					"pink": 1,
-					"red": 5,
+					"pink": 3,
+					"red": 3,
 					"yellow": 3
 				},
 				{
-					"userName": "jdepp",
-					"orange": 4,
-					"pink": 0,
-					"red": 5,
+					"userName": "jdepp", 
+					"orange": 3,
+					"pink": 3,
+					"red": 3,
 					"yellow": 3
 				}
 			]
-		}
-
-		request: DELETE /groups/
-		request body: the group to be deleted
-		note: requires authentication. the user must belong to the group.
-
-		A REST REQUEST BODY FOR A DELETE GROUP SHOULD LOOK LIKE:
-		{
-			"groupName": "The Two Musketeers"
 		}
 
 AUTHENTICATION:
@@ -129,6 +99,8 @@ We can use Basic HTTP Authentication to protect security and privacy of users. I
         final int flags = 0;
         return "Basic " + Base64.encodeToString(userAndPassword.getBytes(), flags);
     }
+    
+NOTE: Bryan doesn't understand the authentication part yet.
 
 ERRORS:
 
