@@ -1,11 +1,7 @@
 package com.example.shareburst;
 
-import java.util.List;
-
-import retrofit.RestAdapter;
 import android.app.Activity;
 import android.app.Fragment;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements ModifyUser {
 	
 	public final static String API_URL = "http://shareburst.herokuapp.com/";
 	
@@ -22,8 +18,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		new RestTask().execute();
+		
+		User u = new User();
+		u.setUserName("mouse");
+		u.setFirstName("bob");
+		
+		new PutUser(MainActivity.this, this, u).execute();
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -67,37 +67,17 @@ public class MainActivity extends Activity {
 			return rootView;
 		}
 	}
-	
-	public void alert(String str) {
-		Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
+
+	@Override
+	public void modifyUserSuccess(ModifyUserMethods method, User user) {
+		// TODO Auto-generated method stub
+		Toast.makeText(getApplicationContext(), user.getUserName(), Toast.LENGTH_LONG).show();
 	}
 
-	  class RestTask extends AsyncTask<String, Void, User> {
-
-		    protected User doInBackground(String... urls) {
-		    	
-			    	RestAdapter restAdapter = new RestAdapter.Builder()
-			        .setEndpoint(API_URL)
-			        .build();
-	
-				    // Create an instance of our GitHub API interface.
-				    RestApi restApi = restAdapter.create(RestApi.class);
-				
-				    // Fetch and print a list of the contributors to this library.
-				    User user = restApi.getUser("trohman");
-				    //Toast.makeText(getApplicationContext(), res.toString(), Toast.LENGTH_LONG).show();
-				    System.out.println(user.getUserName());
-//				    for (User user : res) {
-//				    	System.out.println(user.name);
-//				    }
-				return user;
-		    }
-
-		    protected void onPostExecute(User user) {
-		        // TODO: check this.exception 
-		        // TODO: do something with the feed
-		    	alert(user.getFirstName() + "\n" + user.getPassword());
-		    }
-		}
+	@Override
+	public void modifyUserFailure(ModifyUserMethods method, User user) {
+		// TODO Auto-generated method stub
+		Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_LONG).show();
+	}
     
 }
