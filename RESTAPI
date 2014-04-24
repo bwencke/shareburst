@@ -2,7 +2,7 @@ NOTE: The goal of using a REST API is to create an interface between the client 
 
 REST API:
 
-	USERS: Used to login, update preferences, and add users to a group.
+	USERS: Used to create users, update users, get user information, login, and delete users.
 
 		request: PUT /users/
 		request body: the user who is being updated or created
@@ -57,7 +57,7 @@ REST API:
 			"userName": "bwencke"
 		}
 
-	GROUPS: Used to group users and the starbursts they are sharing.
+	GROUPS: Used to group users and assign Starbursts.
 
 		request: PUT /groups/
 		request body: the group with usernames and number of packets
