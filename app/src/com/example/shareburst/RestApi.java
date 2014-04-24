@@ -20,6 +20,11 @@ public interface RestApi {
     		@Body User user
     );
     
+    @PUT("/users/login")
+    boolean loginUser(
+    		@Body User user
+    );
+    
     // GROUPS
     @GET("/group/{name}")
     Group getGroup(
