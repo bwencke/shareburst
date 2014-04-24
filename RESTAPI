@@ -38,7 +38,7 @@ REST API:
 			}
 		}
 		
-		request: GET /users/login/
+		request: PUT /users/login/
 		request body: the user who is trying to log in
 		response: a boolean representing whether the userName and password match
 		
