@@ -8,5 +8,7 @@
     
     <string name="email_address">eeeemail</string>
     <string name="button_submit">Submit!</string>
+    <string name="set_preferences">Set Preferences</string>
+    <string name="create_group">Create Group</string>
 
 </resources>
