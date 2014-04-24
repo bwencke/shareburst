@@ -29,6 +29,23 @@
             android:name="com.example.shareburst.ResultActivity"
             android:label="@string/title_activity_result" >
         </activity>
+        <activity
+            android:name="com.example.shareburst.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="com.example.shareburst.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
+        <activity
+            android:name="com.example.shareburst.RegisterActivity"
+            android:label="@string/title_activity_register" >
+        </activity>
+        <activity
+            android:name="com.example.shareburst.PreferenceActivity"
+            android:label="@string/title_activity_preference" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,4 +1,6 @@
-package com.example.shareburst;
+package com.example.rest;
+
+import com.example.shareburst.Group;
 
 import retrofit.http.Body;
 import retrofit.http.GET;
@@ -17,6 +19,11 @@ public interface RestApi {
     
     @PUT("/users")
     User putUser(
+    		@Body User user
+    );
+    
+    @PUT("/users/login")
+    boolean loginUser(
     		@Body User user
     );
     
