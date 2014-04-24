@@ -100,13 +100,4 @@ We can use Basic HTTP Authentication to protect security and privacy of users. I
         return "Basic " + Base64.encodeToString(userAndPassword.getBytes(), flags);
     }
     
-NOTE: Bryan doesn't understand the authentication part yet.
-
-ERRORS:
-
-In the event of an error, the server should respond with:
-
-{
-	"error": "decription of error"
-}
-
+NOTE: We're not doing authentication yet.
