@@ -2,8 +2,24 @@ NOTE: The goal of using a REST API is to create an interface between the client 
 
 REST API:
 
-	USERS: Used to create users, update users, get user information, login, and delete users.
+	USERS: Used to get a list of users, create users, update users, get user information, login, and delete users.
+		
+		request: GET /users/
+		response: a list of all the users
 
+		A REST RESPONSE FOR A USER SHOULD LOOK LIKE:
+		{
+			"userName": "bwencke",
+			"firstName": "Ben",
+			"lastName": "Wencke",
+			"preferences": {
+				"orange": 5,
+				"pink": 0,
+				"red": 3,
+				"yellow": 4
+			}
+		}
+		
 		request: PUT /users/
 		request body: the user who is being updated or created
 		response: the user who is being updated or created
@@ -100,13 +116,4 @@ We can use Basic HTTP Authentication to protect security and privacy of users. I
         return "Basic " + Base64.encodeToString(userAndPassword.getBytes(), flags);
     }
     
-NOTE: Bryan doesn't understand the authentication part yet.
-
-ERRORS:
-
-In the event of an error, the server should respond with:
-
-{
-	"error": "decription of error"
-}
-
+NOTE: We're not doing authentication yet.
