@@ -1,4 +1,4 @@
-package com.example.shareburst;
+package com.example.rest;
 
 import com.example.data.UserName;
 

@@ -1,6 +1,8 @@
 package com.example.shareburst;
 
 import com.example.data.UserName;
+import com.example.rest.ModifyUser;
+import com.example.rest.User;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

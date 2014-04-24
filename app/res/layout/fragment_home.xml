@@ -23,5 +23,34 @@
          android:layout_alignLeft="@+id/textView1"
          android:layout_below="@+id/textView1"
          android:text="Logout" />
+     
+     <TextView 
+            android:id="@+id/title"
+            android:text="@string/app_name"
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_centerHorizontal="true"
+        	android:layout_centerVertical="true"
+            />
+
+        <Button
+            android:id="@+id/prefs_button"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/set_preferences"
+            android:layout_below="@id/title"
+            />
+        
+        <Button
+            android:id="@+id/group_button"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_group"
+            android:layout_below="@id/prefs_button"
+            />
 
 </RelativeLayout>

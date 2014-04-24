@@ -55,6 +55,10 @@ public class HomeActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		TextView msg;
+		Button logout;
+		Button preferencesButton;
+		
 		public PlaceholderFragment() {
 		}
 
@@ -63,9 +67,6 @@ public class HomeActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_home, container,
 					false);
-			
-			TextView msg;
-			Button logout;
 			
 			msg = (TextView) rootView.findViewById(R.id.textView1);
 			msg.setText("Hello, " + UserName.getUserName(getActivity()));
@@ -80,6 +81,18 @@ public class HomeActivity extends Activity {
 					Intent intent = new Intent(getActivity(), LoginActivity.class);
 					startActivity(intent);
 					getActivity().finish();
+				}
+				
+			});
+			
+			preferencesButton = (Button) rootView.findViewById(R.id.prefs_button);
+			preferencesButton.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(getActivity(), PreferenceActivity.class);
+					startActivity(intent);
 				}
 				
 			});

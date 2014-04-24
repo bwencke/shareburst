@@ -1,4 +1,6 @@
-package com.example.shareburst;
+package com.example.rest;
+
+import com.example.shareburst.Group;
 
 import retrofit.http.Body;
 import retrofit.http.GET;
