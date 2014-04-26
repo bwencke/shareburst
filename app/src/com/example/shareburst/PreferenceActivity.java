@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -73,12 +74,14 @@ public class PreferenceActivity extends Activity {
 		LinearLayout cols = new LinearLayout(getApplicationContext());
 		
 		TextView instructions = new TextView(getApplicationContext());
-		instructions.setText("Click on the rectangles, kind sir!");
+		instructions.setText("Given 12 Starbursts, how many of each flavor would you prefer?");
 		//Display display = getWindowManager().getDefaultDisplay();
 		//Point size = new Point();
 		//display.getSize(size);
 		instructions.setTextSize(20);
-		instructions.setPadding(4, 4, 4, 14);
+		instructions.setPadding(30, 14, 30, 14);
+		instructions.setTextColor(Color.BLACK);
+		instructions.setGravity(Gravity.CENTER_VERTICAL);
 		//instructions.setBackgroundColor(Color.MAGENTA);
 		
 		//cols.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -94,6 +97,7 @@ public class PreferenceActivity extends Activity {
 		LinearLayout colGray = new LinearLayout(getApplicationContext());
 		colGray.setOrientation(LinearLayout.VERTICAL);
 		colGray.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.FILL_PARENT, 1));
+		//colGray.setPadding(20, 0, 20, 0);
 		LinearLayout colRed = new LinearLayout(getApplicationContext());
 		colRed.setOrientation(LinearLayout.VERTICAL);
 		colRed.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.FILL_PARENT, 1));
@@ -324,7 +328,7 @@ public class PreferenceActivity extends Activity {
 	        return true;
         case R.id.action_accept:
         	if (graysRem > 0){
-				Toast.makeText(getApplicationContext(), "You haven't allocated all Starburst!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "You have " + graysRem + " more Starbursts to distribute!", Toast.LENGTH_SHORT).show();
 			} else {
 				Log.i("What", graysRem + "");
 				finish();
