@@ -89,7 +89,7 @@ public class PreferenceActivity extends Activity {
 			rvGray[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
 			//rvGray[i].setColor(Color.GRAY);
 			colGray.addView(rvGray[i]);
-			rvGray[i].setOnClickListener(rectListener);
+			//rvGray[i].setOnClickListener(rectListener);
 			rvRed[i] = new RectangleView(getApplicationContext(), i, 1);
 			rvRed[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
 			//rvRed[i].setColor(Color.DKGRAY);
@@ -111,12 +111,45 @@ public class PreferenceActivity extends Activity {
 			colPink.addView(rvPink[i]);
 			rvPink[i].setOnClickListener(rectListener);
 		}
+		
+		//This section makes the little rectangles underneath
+		rvRed[0] = new ThinRectangleView(getApplicationContext(), 0, 1);
+		rvRed[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
+		rvRed[0].setColor(Color.RED);
+		rvRed[0].setOnClickListener(rectListener);
+		colRed.addView(rvRed[0]);
+		
+		rvYellow[0] = new ThinRectangleView(getApplicationContext(), 0, 2);
+		rvYellow[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
+		rvYellow[0].setColor(Color.YELLOW);
+		rvYellow[0].setOnClickListener(rectListener);
+		colYel.addView(rvYellow[0]);
+		
+		rvOrange[0] = new ThinRectangleView(getApplicationContext(), 0, 3);
+		rvOrange[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
+		rvOrange[0].setColor(0xffff9900);
+		rvOrange[0].setOnClickListener(rectListener);
+		colOran.addView(rvOrange[0]);
+		
+		rvPink[0] = new ThinRectangleView(getApplicationContext(), 0, 4);
+		rvPink[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
+		rvPink[0].setColor(0xffff87c3);
+		rvPink[0].setOnClickListener(rectListener);
+		colPink.addView(rvPink[0]);
+		
+		rvGray[0] = new ThinRectangleView(getApplicationContext(), 0, 0);
+		rvGray[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
+		rvGray[0].setColor(Color.GRAY);
+		colGray.addView(rvGray[0]);
+		
+		
 		if (noCurrentPrefs){
 			clear();
 		}
 		else {
 			loadSaved();
 		}
+		
 		cols.addView(colGray);
 		cols.addView(colRed);
 		cols.addView(colYel);
