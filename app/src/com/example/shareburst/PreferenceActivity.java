@@ -8,10 +8,12 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +42,14 @@ public class PreferenceActivity extends Activity {
 	RectangleView rvOrange[];
 	RectangleView rvPink[];
 	Boolean noCurrentPrefs = true;
+	
+	int colorLightGray = Color.LTGRAY;
+	int colorRed = Color.RED;
+	int colorGray = Color.GRAY;
+	int colorYellow = Color.YELLOW;
+	int colorOrange = 0xffff9900;
+	int colorPink = 0xffff87c3;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +71,23 @@ public class PreferenceActivity extends Activity {
 		rvOrange = new RectangleView[13];
 		rvPink = new RectangleView[13];
 		LinearLayout cols = new LinearLayout(getApplicationContext());
+		
+		TextView instructions = new TextView(getApplicationContext());
+		instructions.setText("Click on the rectangles, kind sir!");
+		//Display display = getWindowManager().getDefaultDisplay();
+		//Point size = new Point();
+		//display.getSize(size);
+		instructions.setTextSize(20);
+		instructions.setPadding(4, 4, 4, 14);
+		//instructions.setBackgroundColor(Color.MAGENTA);
+		
 		//cols.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
 				//LinearLayout.LayoutParams.WRAP_CONTENT));
-		//LinearLayout total = new LinearLayout(getApplicationContext());
+		LinearLayout total = new LinearLayout(getApplicationContext());
 		//RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		//relativeParams.addRule(RelativeLayout.BELOW, cols.getId());
 		//relativeParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-		//total.setOrientation(LinearLayout.VERTICAL);
+		total.setOrientation(LinearLayout.VERTICAL);
 		//total.setScrollContainer(true);
 		//cols.setBackgroundColor(Color.BLUE);
 		
@@ -90,27 +110,27 @@ public class PreferenceActivity extends Activity {
 		for (int i = 12; i > 0; i--){
 			rvGray[i] = new RectangleView(getApplicationContext(), i, 0);
 			rvGray[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			//rvGray[i].setColor(Color.GRAY);
+			//rvGray[i].setColor(colorGray);
 			colGray.addView(rvGray[i]);
 			//rvGray[i].setOnClickListener(rectListener);
 			rvRed[i] = new RectangleView(getApplicationContext(), i, 1);
 			rvRed[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			//rvRed[i].setColor(Color.DKGRAY);
+			//rvRed[i].setColor(colorLightGray);
 			colRed.addView(rvRed[i]);
 			rvRed[i].setOnClickListener(rectListener);
 			rvYellow[i] = new RectangleView(getApplicationContext(), i, 2);
 			rvYellow[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			//rvYellow[i].setColor(Color.DKGRAY);
+			//rvYellow[i].setColor(colorLightGray);
 			colYel.addView(rvYellow[i]);
 			rvYellow[i].setOnClickListener(rectListener);
 			rvOrange[i] = new RectangleView(getApplicationContext(), i, 3);
 			rvOrange[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			//rvOrange[i].setColor(Color.DKGRAY);
+			//rvOrange[i].setColor(colorLightGray);
 			colOran.addView(rvOrange[i]);
 			rvOrange[i].setOnClickListener(rectListener);
 			rvPink[i] = new RectangleView(getApplicationContext(), i, 4);
 			rvPink[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			//rvPink[i].setColor(Color.DKGRAY);
+			//rvPink[i].setColor(colorLightGray);
 			colPink.addView(rvPink[i]);
 			rvPink[i].setOnClickListener(rectListener);
 		}
@@ -118,31 +138,31 @@ public class PreferenceActivity extends Activity {
 		//This section makes the little rectangles underneath
 		rvRed[0] = new ThinRectangleView(getApplicationContext(), 0, 1);
 		rvRed[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-		rvRed[0].setColor(Color.RED);
+		rvRed[0].setColor(colorRed);
 		rvRed[0].setOnClickListener(rectListener);
 		colRed.addView(rvRed[0]);
 		
 		rvYellow[0] = new ThinRectangleView(getApplicationContext(), 0, 2);
 		rvYellow[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-		rvYellow[0].setColor(Color.YELLOW);
+		rvYellow[0].setColor(colorYellow);
 		rvYellow[0].setOnClickListener(rectListener);
 		colYel.addView(rvYellow[0]);
 		
 		rvOrange[0] = new ThinRectangleView(getApplicationContext(), 0, 3);
 		rvOrange[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-		rvOrange[0].setColor(0xffff9900);
+		rvOrange[0].setColor(colorOrange);
 		rvOrange[0].setOnClickListener(rectListener);
 		colOran.addView(rvOrange[0]);
 		
 		rvPink[0] = new ThinRectangleView(getApplicationContext(), 0, 4);
 		rvPink[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-		rvPink[0].setColor(0xffff87c3);
+		rvPink[0].setColor(colorPink);
 		rvPink[0].setOnClickListener(rectListener);
 		colPink.addView(rvPink[0]);
 		
 		rvGray[0] = new ThinRectangleView(getApplicationContext(), 0, 0);
 		rvGray[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-		rvGray[0].setColor(Color.GRAY);
+		rvGray[0].setColor(colorGray);
 		colGray.addView(rvGray[0]);
 		
 		
@@ -161,21 +181,22 @@ public class PreferenceActivity extends Activity {
 		
 		//total.setBackgroundColor(Color.GREEN);
 		
-		//total.addView(cols);
-		setContentView(cols);
+		total.addView(instructions);
+		total.addView(cols);
+		setContentView(total);
 	}
 	
 	public void clear(){
 		for (int i = 12; i > 0; i--){
-			rvGray[i].setColor(Color.GRAY);
+			rvGray[i].setColor(colorGray);
 			rvGray[i].invalidate();
-			rvRed[i].setColor(Color.DKGRAY);
+			rvRed[i].setColor(colorLightGray);
 			rvRed[i].invalidate();
-			rvYellow[i].setColor(Color.DKGRAY);
+			rvYellow[i].setColor(colorLightGray);
 			rvYellow[i].invalidate();
-			rvOrange[i].setColor(Color.DKGRAY);
+			rvOrange[i].setColor(colorLightGray);
 			rvOrange[i].invalidate();
-			rvPink[i].setColor(Color.DKGRAY);
+			rvPink[i].setColor(colorLightGray);
 			rvPink[i].invalidate();
 		}
 		graysRem = 12;
@@ -199,58 +220,58 @@ public class PreferenceActivity extends Activity {
         		break;
         	case 1:
         		if (graysRem >= g.getLevel()-colorPrefs[colorId-1]){
-        			colorSwitcher(rvRed, Color.RED, g.getLevel());
+        			colorSwitcher(rvRed, colorRed, g.getLevel());
         			graysRem = graysRem-g.getLevel()+colorPrefs[colorId-1];
-        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        			colorSwitcher(rvGray, colorGray, graysRem);
         			colorPrefs[colorId-1] = g.getLevel();
         		}
         		else if (graysRem > 0) {
-        			colorSwitcher(rvRed, Color.RED, colorPrefs[colorId-1] + graysRem);
+        			colorSwitcher(rvRed, colorRed, colorPrefs[colorId-1] + graysRem);
         			colorPrefs[colorId-1] = colorPrefs[colorId-1] + graysRem;
         			graysRem = 0;
-        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        			colorSwitcher(rvGray, colorGray, graysRem);
         		}
         		break;
         	case 2:
         		if (graysRem >= g.getLevel()-colorPrefs[colorId-1]){
-        			colorSwitcher(rvYellow, Color.YELLOW, g.getLevel());
+        			colorSwitcher(rvYellow, colorYellow, g.getLevel());
         			graysRem = graysRem-g.getLevel()+colorPrefs[colorId-1];
-        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        			colorSwitcher(rvGray, colorGray, graysRem);
         			colorPrefs[colorId-1] = g.getLevel();
         		}
         		else if (graysRem > 0) {
-        			colorSwitcher(rvYellow, Color.YELLOW, colorPrefs[colorId-1] + graysRem);
+        			colorSwitcher(rvYellow, colorYellow, colorPrefs[colorId-1] + graysRem);
         			colorPrefs[colorId-1] = colorPrefs[colorId-1] + graysRem;
         			graysRem = 0;
-        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        			colorSwitcher(rvGray, colorGray, graysRem);
         		}
         		break;
         	case 3:
         		if (graysRem >= g.getLevel()-colorPrefs[colorId-1]){
-        			colorSwitcher(rvOrange, 0xffff9900, g.getLevel());
+        			colorSwitcher(rvOrange, colorOrange, g.getLevel());
         			graysRem = graysRem-g.getLevel()+colorPrefs[colorId-1];
-        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        			colorSwitcher(rvGray, colorGray, graysRem);
         			colorPrefs[colorId-1] = g.getLevel();
         		}
         		else if (graysRem > 0) {
-        			colorSwitcher(rvOrange, 0xffff9900, colorPrefs[colorId-1] + graysRem);
+        			colorSwitcher(rvOrange, colorOrange, colorPrefs[colorId-1] + graysRem);
         			colorPrefs[colorId-1] = colorPrefs[colorId-1] + graysRem;
         			graysRem = 0;
-        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        			colorSwitcher(rvGray, colorGray, graysRem);
         		}
         		break;
         	case 4:
         		if (graysRem >= g.getLevel()-colorPrefs[colorId-1]){
-        			colorSwitcher(rvPink, 0xffff87c3, g.getLevel());
+        			colorSwitcher(rvPink, colorPink, g.getLevel());
         			graysRem = graysRem-g.getLevel()+colorPrefs[colorId-1];
-        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        			colorSwitcher(rvGray, colorGray, graysRem);
         			colorPrefs[colorId-1] = g.getLevel();
         		}
         		else if (graysRem > 0) {
-        			colorSwitcher(rvPink, 0xffff87c3, colorPrefs[colorId-1] + graysRem);
+        			colorSwitcher(rvPink, colorPink, colorPrefs[colorId-1] + graysRem);
         			colorPrefs[colorId-1] = colorPrefs[colorId-1] + graysRem;
         			graysRem = 0;
-        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        			colorSwitcher(rvGray, colorGray, graysRem);
         		}
         		break;
         	}
@@ -263,12 +284,12 @@ public class PreferenceActivity extends Activity {
     public void loadSaved(){
     	//If it has data get it from the server, store in colorPrefs
     	//Or just load the zeros? Anyway TBD
-    	colorSwitcher(rvRed, Color.RED, colorPrefs[0]);
-    	colorSwitcher(rvYellow, Color.YELLOW, colorPrefs[1]);
-    	colorSwitcher(rvOrange, 0xffff9900, colorPrefs[2]);
-    	colorSwitcher(rvPink, 0xffff87c3, colorPrefs[3]);
+    	colorSwitcher(rvRed, colorRed, colorPrefs[0]);
+    	colorSwitcher(rvYellow, colorYellow, colorPrefs[1]);
+    	colorSwitcher(rvOrange, colorOrange, colorPrefs[2]);
+    	colorSwitcher(rvPink, colorPink, colorPrefs[3]);
     	graysRem = 0; //GraysRem must be zero if you are to save preferences
-    	colorSwitcher(rvGray, Color.GRAY, graysRem);
+    	colorSwitcher(rvGray, colorGray, graysRem);
     }
     
     public void colorSwitcher(RectangleView array[], int c, int lev){
@@ -278,7 +299,7 @@ public class PreferenceActivity extends Activity {
     			array[i].invalidate();
     		}
     		else {
-    			array[i].setColor(Color.DKGRAY);
+    			array[i].setColor(colorLightGray);
     			array[i].invalidate();
     		}
     	}
