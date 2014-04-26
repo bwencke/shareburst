@@ -66,7 +66,7 @@ REST API:
 
 		request: DELETE /users/
 		request body: the userName of the user to be deleted
-		response: "Success" upon success
+		response: null
 
 		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
 		{
@@ -76,18 +76,26 @@ REST API:
 	GROUPS: Used to group users and assign Starbursts.
 
 		request: PUT /groups/
-		request body: the group with usernames and number of packets
+		request body: the group with group name, number of packets, and usernames
 		response body: the group with assignments
 
 		A REST REQUEST BODY FOR A GROUP SHOULD LOOK LIKE:
 		{
-			"userNames": ["bwencke", "jdepp"],
-			"nPackets": 2
+			"groupID": 0,
+			"groupName": "Group Awesome",
+			"nPackets": 2,
+			"assignments": [{
+					"userName": "bwencke"
+				},
+				{
+					"userName": "jdepp"
+				}]
 		}
 		
 		A REST RESPONSE BODY FOR A GROUP SHOULD LOOK LIKE:
 		{
-			"userNames": ["bwencke", "jdepp"],
+			"groupID": 27580,
+			"groupName": "Group Awesome",
 			"nPackets": 2,
 			"assignments": [{
 					"userName": "bwencke", 
@@ -104,6 +112,40 @@ REST API:
 					"yellow": 3
 				}
 			]
+		}
+		
+		request: GET /groups/{username}
+		response body: a list of all the groups that user belongs to
+		
+		A REST RESPONSE BODY FOR A GROUP SHOULD LOOK LIKE:
+		{
+			"groupID": 27580,
+			"groupName": "Group Awesome",
+			"nPackets": 2,
+			"assignments": [{
+					"userName": "bwencke", 
+					"orange": 3,
+					"pink": 3,
+					"red": 3,
+					"yellow": 3
+				},
+				{
+					"userName": "jdepp", 
+					"orange": 3,
+					"pink": 3,
+					"red": 3,
+					"yellow": 3
+				}
+			]
+		}
+		
+		request: DELETE /groups/
+		request body: the group to delete
+		response body: null
+		
+		A REST REQUEST BODY FOR A GROUP SHOULD LOOK LIKE:
+		{
+			"groupID": 27580
 		}
 
 AUTHENTICATION:
