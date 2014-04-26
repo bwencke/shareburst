@@ -202,6 +202,12 @@ public class PreferenceActivity extends Activity {
         			colorSwitcher(rvGray, Color.GRAY, graysRem);
         			colorPrefs[colorId-1] = g.getLevel();
         		}
+        		else if (graysRem > 0) {
+        			colorSwitcher(rvRed, Color.RED, colorPrefs[colorId-1] + graysRem);
+        			colorPrefs[colorId-1] = colorPrefs[colorId-1] + graysRem;
+        			graysRem = 0;
+        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        		}
         		break;
         	case 2:
         		if (graysRem >= g.getLevel()-colorPrefs[colorId-1]){
@@ -209,6 +215,12 @@ public class PreferenceActivity extends Activity {
         			graysRem = graysRem-g.getLevel()+colorPrefs[colorId-1];
         			colorSwitcher(rvGray, Color.GRAY, graysRem);
         			colorPrefs[colorId-1] = g.getLevel();
+        		}
+        		else if (graysRem > 0) {
+        			colorSwitcher(rvYellow, Color.YELLOW, colorPrefs[colorId-1] + graysRem);
+        			colorPrefs[colorId-1] = colorPrefs[colorId-1] + graysRem;
+        			graysRem = 0;
+        			colorSwitcher(rvGray, Color.GRAY, graysRem);
         		}
         		break;
         	case 3:
@@ -218,6 +230,12 @@ public class PreferenceActivity extends Activity {
         			colorSwitcher(rvGray, Color.GRAY, graysRem);
         			colorPrefs[colorId-1] = g.getLevel();
         		}
+        		else if (graysRem > 0) {
+        			colorSwitcher(rvOrange, 0xffff9900, colorPrefs[colorId-1] + graysRem);
+        			colorPrefs[colorId-1] = colorPrefs[colorId-1] + graysRem;
+        			graysRem = 0;
+        			colorSwitcher(rvGray, Color.GRAY, graysRem);
+        		}
         		break;
         	case 4:
         		if (graysRem >= g.getLevel()-colorPrefs[colorId-1]){
@@ -225,6 +243,12 @@ public class PreferenceActivity extends Activity {
         			graysRem = graysRem-g.getLevel()+colorPrefs[colorId-1];
         			colorSwitcher(rvGray, Color.GRAY, graysRem);
         			colorPrefs[colorId-1] = g.getLevel();
+        		}
+        		else if (graysRem > 0) {
+        			colorSwitcher(rvPink, 0xffff87c3, colorPrefs[colorId-1] + graysRem);
+        			colorPrefs[colorId-1] = colorPrefs[colorId-1] + graysRem;
+        			graysRem = 0;
+        			colorSwitcher(rvGray, Color.GRAY, graysRem);
         		}
         		break;
         	}
