@@ -23,6 +23,8 @@
 		        android:text="@string/shareburst"
 		        android:layout_margin="20dp"
 		        android:gravity="center"
+		        android:fontFamily="sans-serif-light"
+		        android:textSize="30sp"
 		        android:textAppearance="?android:attr/textAppearanceLarge" />
             
             <EditText

@@ -6,6 +6,7 @@ import retrofit.RestAdapter;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 public interface ModifyUser {
 
@@ -84,7 +85,7 @@ public interface ModifyUser {
 		
 	    protected User doInBackground(String... urls) {
 	    	
-	    	User user = null;
+	    	User newUser = null;
 	    	try {
 		    	RestAdapter restAdapter = new RestAdapter.Builder()
 		        .setEndpoint(RestApi.API_URL)
@@ -93,11 +94,11 @@ public interface ModifyUser {
 			    // Create an instance of our API interface.
 			    RestApi restApi = restAdapter.create(RestApi.class);
 			
-			    user = restApi.putUser(user);
+			    newUser = restApi.putUser(user);
 	    	} catch (Exception e) {
 	    		
 	    	}
-			return user;
+			return newUser;
 	    }
 
 	    protected void onPostExecute(User user) {
@@ -140,6 +141,7 @@ public interface ModifyUser {
 			    // Create an instance of our API interface.
 			    RestApi restApi = restAdapter.create(RestApi.class);
 			    b = restApi.loginUser(user);
+			    Log.i("bool", ""+b);
 	    	} catch(Exception e) {
 	    		
 	    	}

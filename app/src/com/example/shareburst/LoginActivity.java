@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -103,11 +104,19 @@ public class LoginActivity extends Activity implements ModifyUser {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		String username = (String) data.getCharSequenceExtra("username");
-		String password = (String) data.getCharSequenceExtra("password");
-
-		mUserNameView.setText(username);
-		mPasswordView.setText(password);
+		try {
+			String username = (String) data.getCharSequenceExtra("username");
+			String password = (String) data.getCharSequenceExtra("password");
+			
+			mUserNameView.setText(username);
+			mPasswordView.setText(password);
+			
+			mPasswordView.setSelection(mPasswordView.getText().length());
+			
+		} catch(Exception e) {
+			Toast.makeText(getApplicationContext(), "Oops. Something went wrong.", Toast.LENGTH_LONG).show();
+			return;
+		}
 		
 		attemptLogin();
 		//mPasswordView.requestFocus();

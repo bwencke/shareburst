@@ -94,8 +94,12 @@ public class RegisterActivity extends Activity {
 			User newUser = new User();
 			if(nameView.getText() != null) {
 				String name = nameView.getText().toString();
-				String firstName = name.substring(0,name.lastIndexOf(" "));
-				String lastName = name.substring(name.lastIndexOf(" ")+1,name.length());
+				String firstName = name;
+				String lastName = null;
+				if(name.lastIndexOf(" ") > 0) {
+					firstName = name.substring(0,name.lastIndexOf(" "));
+					lastName = name.substring(name.lastIndexOf(" ")+1,name.length());
+				}
 				newUser.setFirstName(firstName);
 				newUser.setLastName(lastName);
 			}
@@ -118,7 +122,6 @@ public class RegisterActivity extends Activity {
 		public void modifyUserFailure(ModifyUserMethods method, User user) {
 			// TODO Auto-generated method stub
 			Toast.makeText(getActivity(), "Failed to create user.", Toast.LENGTH_SHORT).show();
-			getActivity().finish();
 		}
 
 	}
