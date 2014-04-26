@@ -2,8 +2,6 @@ package com.example.rest;
 
 import java.util.ArrayList;
 
-import com.example.shareburst.Group;
-
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.PUT;
@@ -33,9 +31,14 @@ public interface RestApi {
     );
     
     // GROUPS
-    @GET("/group/{name}")
-    Group getGroup(
+    @GET("/groups/{name}")
+    ArrayList<Group> getGroups(
     		@Path("name") String name
+    );
+    
+    @PUT("/groups")
+    Group putGroup(
+    		@Body Group group
     );
 	
 }

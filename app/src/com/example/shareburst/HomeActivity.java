@@ -69,6 +69,7 @@ public class HomeActivity extends Activity {
 		TextView msg;
 		Button logout;
 		Button preferencesButton;
+		Button groupsButton;
 		User user;
 		
 		public PlaceholderFragment() {
@@ -109,6 +110,18 @@ public class HomeActivity extends Activity {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					Intent intent = new Intent(getActivity(), PreferenceActivity.class);
+					startActivity(intent);
+				}
+				
+			});
+			
+			groupsButton = (Button) rootView.findViewById(R.id.group_button);
+			groupsButton.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(getActivity(), GroupsActivity.class);
 					startActivity(intent);
 				}
 				

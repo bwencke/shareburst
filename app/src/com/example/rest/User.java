@@ -1,9 +1,10 @@
 package com.example.rest;
 
-import com.example.shareburst.Preferences;
-
+import java.util.ArrayList;
 public class User {
 
+	public static ArrayList<User> users = new ArrayList<User>();
+	
 	private String firstName;
 	private String lastName;
 	private String userName;
@@ -50,13 +51,17 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public Preferences getPreferences() {
 		return preferences;
+	}
+
+	public int[] getPreferencesArray() {
+		return new int[]{preferences.getOrange(), preferences.getPink(), preferences.getRed(), preferences.getYellow()};
 	}
 
 	public void setPreferences(Preferences preferences) {
 		this.preferences = preferences;
 	}
-	
+
 }
