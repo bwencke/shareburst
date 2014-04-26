@@ -12,45 +12,64 @@
 	        android:id="@+id/textView1"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="THE WORLD IS FLAT!!!"
+	        android:text="@string/default_greeting"
 	        android:layout_margin="20dp"
 	        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-     <Button
-         android:id="@+id/button1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignLeft="@+id/textView1"
-         android:layout_below="@+id/textView1"
-         android:text="Logout" />
+    
+     <TextView
+	        android:id="@+id/whatToDo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/textView1"
+	        android:text="@string/what_to_do"
+	        android:textSize="25sp"
+	        android:textStyle="italic"
+	        android:fontFamily="sans-serif-light"
+	        android:layout_margin="5dp" />
      
-     <TextView 
-            android:id="@+id/title"
-            android:text="@string/app_name"
-            android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:layout_centerHorizontal="true"
-        	android:layout_centerVertical="true"
-            />
-
         <Button
             android:id="@+id/prefs_button"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/set_preferences"
-            android:layout_below="@id/title"
-            />
+            android:layout_below="@id/whatToDo" />
         
         <Button
             android:id="@+id/group_button"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/create_group"
             android:layout_below="@id/prefs_button"
             />
+        
+        <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true" 
+        android:layout_margin="10dp">
+    <TextView
+        android:id="@+id/starburstFactTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/starburstFact"
+        android:text="@string/starburst_fact"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
+         
+     <TextView
+	     android:id="@id/starburstFact"
+	     android:layout_width="wrap_content"
+	     android:layout_height="wrap_content"
+	     android:layout_alignParentBottom="true"
+	     android:text="@string/default_fact"
+	     android:textSize="18sp"
+	     android:layout_margin="5dp" />
+     
+     </RelativeLayout>
 
 </RelativeLayout>

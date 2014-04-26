@@ -1,5 +1,7 @@
 package com.example.rest;
 
+import java.util.ArrayList;
+
 import com.example.shareburst.Group;
 
 import retrofit.http.Body;
@@ -12,6 +14,9 @@ public interface RestApi {
 	public final static String API_URL = "http://shareburst.herokuapp.com/";
 	
 	// USERS
+	@GET("/users")
+    ArrayList<User> getUsers();
+	
     @GET("/users/{name}")
     User getUser(
     		@Path("name") String name

@@ -31,8 +31,7 @@
         </activity>
         <activity
             android:name="com.example.shareburst.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
+            android:label="@string/title_activity_login" >
         </activity>
         <activity
             android:name="com.example.shareburst.HomeActivity"
@@ -40,12 +39,17 @@
         </activity>
         <activity
             android:name="com.example.shareburst.RegisterActivity"
-            android:label="@string/title_activity_register" >
+            android:label="@string/title_activity_register"
+            android:parentActivityName="com.example.shareburst.LoginActivity" >
         </activity>
         <activity
             android:name="com.example.shareburst.PreferenceActivity"
             android:label="@string/title_activity_preference"
             android:parentActivityName="com.example.shareburst.HomeActivity" >
+        </activity>
+        <activity
+            android:name="com.example.shareburst.GroupsActivity"
+            android:label="@string/title_activity_groups" >
         </activity>
     </application>
 

@@ -37,14 +37,19 @@ public interface ModifyUser {
 		
 	    protected User doInBackground(String... urls) {
 	    	
-	    	RestAdapter restAdapter = new RestAdapter.Builder()
-	        .setEndpoint(RestApi.API_URL)
-	        .build();
+	    	User user = null;
+	    	try {
+	    		RestAdapter restAdapter = new RestAdapter.Builder()
+	    			.setEndpoint(RestApi.API_URL)
+	    			.build();
 
-		    // Create an instance of our API interface.
-		    RestApi restApi = restAdapter.create(RestApi.class);
+	    		// Create an instance of our API interface.
+	    		RestApi restApi = restAdapter.create(RestApi.class);
 		
-		    User user = restApi.getUser(userName);
+	    		user = restApi.getUser(userName);
+	    	} catch (Exception e) {
+	    		
+	    	}
 			return user;
 	    }
 
@@ -79,14 +84,19 @@ public interface ModifyUser {
 		
 	    protected User doInBackground(String... urls) {
 	    	
-	    	RestAdapter restAdapter = new RestAdapter.Builder()
-	        .setEndpoint(RestApi.API_URL)
-	        .build();
-
-		    // Create an instance of our API interface.
-		    RestApi restApi = restAdapter.create(RestApi.class);
-		
-		    user = restApi.putUser(user);
+	    	User user = null;
+	    	try {
+		    	RestAdapter restAdapter = new RestAdapter.Builder()
+		        .setEndpoint(RestApi.API_URL)
+		        .build();
+	
+			    // Create an instance of our API interface.
+			    RestApi restApi = restAdapter.create(RestApi.class);
+			
+			    user = restApi.putUser(user);
+	    	} catch (Exception e) {
+	    		
+	    	}
 			return user;
 	    }
 
@@ -121,14 +131,19 @@ public interface ModifyUser {
 		
 	    protected Boolean doInBackground(String... urls) {
 	    	
-	    	RestAdapter restAdapter = new RestAdapter.Builder()
-	        .setEndpoint(RestApi.API_URL)
-	        .build();
-
-		    // Create an instance of our API interface.
-		    RestApi restApi = restAdapter.create(RestApi.class);
-		
-		    return restApi.loginUser(user);
+	    	Boolean b = false;
+	    	try {
+		    	RestAdapter restAdapter = new RestAdapter.Builder()
+		        .setEndpoint(RestApi.API_URL)
+		        .build();
+	
+			    // Create an instance of our API interface.
+			    RestApi restApi = restAdapter.create(RestApi.class);
+			    b = restApi.loginUser(user);
+	    	} catch(Exception e) {
+	    		
+	    	}
+		    return b;
 	    }
 
 	    protected void onPostExecute(Boolean success) {
