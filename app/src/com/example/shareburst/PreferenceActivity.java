@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -43,6 +44,8 @@ public class PreferenceActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		//setContentView(R.layout.activity_main);
 		//level = 1;
 
@@ -156,23 +159,8 @@ public class PreferenceActivity extends Activity {
 		cols.addView(colOran);
 		cols.addView(colPink);
 		
-		LinearLayout buttons = new LinearLayout(getApplicationContext());
-		Button saveButton = new Button(getApplicationContext());
-		Button clearButton = new Button(getApplicationContext());
-		saveButton.setText("Save Preferences");
-		saveButton.setOnClickListener(save);
-		saveButton.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.FILL_PARENT, 1));
-		clearButton.setText("Clear");
-		clearButton.setOnClickListener(clearer);
-		clearButton.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.FILL_PARENT, 1));
-		buttons.addView(saveButton);
-		buttons.addView(clearButton);
-		buttons.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-				LinearLayout.LayoutParams.WRAP_CONTENT));
-		buttons.setBackgroundColor(Color.MAGENTA);
 		total.setBackgroundColor(Color.GREEN);
 		
-		total.addView(buttons);
 		total.addView(cols);
 		setContentView(total);
 	}
@@ -196,25 +184,6 @@ public class PreferenceActivity extends Activity {
 		}
 		
 	}
-	
-	final OnClickListener save = new OnClickListener() {
-		public void onClick(final View v) {
-			//This is where the data will be sent to the server TBD
-			if (graysRem > 0){
-				Toast.makeText(getApplicationContext(), "You haven't allocated all Starburst!", Toast.LENGTH_SHORT).show();
-			}
-			else {
-				Log.i("What", graysRem + "");
-				finish();
-			}
-		}
-	};
-	
-	final OnClickListener clearer = new OnClickListener() {
-		public void onClick(final View v) {
-			clear();
-		}
-	};
 	
 	final OnClickListener rectListener = new OnClickListener() {
         public void onClick(final View v) {
@@ -319,7 +288,7 @@ public class PreferenceActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.preferences, menu);
 		return true;
 	}
 
@@ -328,12 +297,25 @@ public class PreferenceActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch (item.getItemId()) {
+		case android.R.id.home:
+	        finish();
+	        return true;
+        case R.id.action_accept:
+        	if (graysRem > 0){
+				Toast.makeText(getApplicationContext(), "You haven't allocated all Starburst!", Toast.LENGTH_SHORT).show();
+			} else {
+				Log.i("What", graysRem + "");
+				finish();
+			}
+            return true;
+        case R.id.action_discard:
+            clear();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
-	}
+  	}
 	
 	public void changeColor(View v){
 		ImageView iv = (ImageView) v;

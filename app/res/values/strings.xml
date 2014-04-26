@@ -10,5 +10,7 @@
     <string name="title_activity_preference">Preferences</string>
     <string name="set_preferences">Set Preferences</string>
     <string name="create_group">Create Group</string>
+    <string name="action_accept">Accept</string>
+    <string name="action_discard">Clear</string>
 
 </resources>
