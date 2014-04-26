@@ -38,6 +38,7 @@ public class PreferenceActivity extends Activity {
 	RectangleView rvYellow[];
 	RectangleView rvOrange[];
 	RectangleView rvPink[];
+	Boolean noCurrentPrefs = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,29 +87,35 @@ public class PreferenceActivity extends Activity {
 		for (int i = 12; i > 0; i--){
 			rvGray[i] = new RectangleView(getApplicationContext(), i, 0);
 			rvGray[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			rvGray[i].setColor(Color.GRAY);
+			//rvGray[i].setColor(Color.GRAY);
 			colGray.addView(rvGray[i]);
 			rvGray[i].setOnClickListener(rectListener);
 			rvRed[i] = new RectangleView(getApplicationContext(), i, 1);
 			rvRed[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			rvRed[i].setColor(Color.DKGRAY);
+			//rvRed[i].setColor(Color.DKGRAY);
 			colRed.addView(rvRed[i]);
 			rvRed[i].setOnClickListener(rectListener);
 			rvYellow[i] = new RectangleView(getApplicationContext(), i, 2);
 			rvYellow[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			rvYellow[i].setColor(Color.DKGRAY);
+			//rvYellow[i].setColor(Color.DKGRAY);
 			colYel.addView(rvYellow[i]);
 			rvYellow[i].setOnClickListener(rectListener);
 			rvOrange[i] = new RectangleView(getApplicationContext(), i, 3);
 			rvOrange[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			rvOrange[i].setColor(Color.DKGRAY);
+			//rvOrange[i].setColor(Color.DKGRAY);
 			colOran.addView(rvOrange[i]);
 			rvOrange[i].setOnClickListener(rectListener);
 			rvPink[i] = new RectangleView(getApplicationContext(), i, 4);
 			rvPink[i].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
-			rvPink[i].setColor(Color.DKGRAY);
+			//rvPink[i].setColor(Color.DKGRAY);
 			colPink.addView(rvPink[i]);
 			rvPink[i].setOnClickListener(rectListener);
+		}
+		if (noCurrentPrefs){
+			clear();
+		}
+		else {
+			loadSaved();
 		}
 		cols.addView(colGray);
 		cols.addView(colRed);
@@ -120,9 +127,10 @@ public class PreferenceActivity extends Activity {
 		Button saveButton = new Button(getApplicationContext());
 		Button clearButton = new Button(getApplicationContext());
 		saveButton.setText("Save Preferences");
-		//saveButton.setVisibility(View.VISIBLE);
+		saveButton.setOnClickListener(save);
 		saveButton.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.FILL_PARENT, 1));
 		clearButton.setText("Clear");
+		clearButton.setOnClickListener(clearer);
 		clearButton.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.FILL_PARENT, 1));
 		buttons.addView(saveButton);
 		buttons.addView(clearButton);
@@ -135,6 +143,45 @@ public class PreferenceActivity extends Activity {
 		total.addView(cols);
 		setContentView(total);
 	}
+	
+	public void clear(){
+		for (int i = 12; i > 0; i--){
+			rvGray[i].setColor(Color.GRAY);
+			rvGray[i].invalidate();
+			rvRed[i].setColor(Color.DKGRAY);
+			rvRed[i].invalidate();
+			rvYellow[i].setColor(Color.DKGRAY);
+			rvYellow[i].invalidate();
+			rvOrange[i].setColor(Color.DKGRAY);
+			rvOrange[i].invalidate();
+			rvPink[i].setColor(Color.DKGRAY);
+			rvPink[i].invalidate();
+		}
+		graysRem = 12;
+		for (int j = 0; j < 4; j++){
+			colorPrefs[j] = 0;
+		}
+		
+	}
+	
+	final OnClickListener save = new OnClickListener() {
+		public void onClick(final View v) {
+			//This is where the data will be sent to the server TBD
+			if (graysRem > 0){
+				Toast.makeText(getApplicationContext(), "You haven't allocated all Starburst!", Toast.LENGTH_SHORT).show();
+			}
+			else {
+				Log.i("What", graysRem + "");
+				finish();
+			}
+		}
+	};
+	
+	final OnClickListener clearer = new OnClickListener() {
+		public void onClick(final View v) {
+			clear();
+		}
+	};
 	
 	final OnClickListener rectListener = new OnClickListener() {
         public void onClick(final View v) {
@@ -181,11 +228,22 @@ public class PreferenceActivity extends Activity {
         		}
         		break;
         	}
-        	Log.i("Prefs: " + graysRem + " " + colorPrefs[0] + " " + colorPrefs[1] + " " + colorPrefs[2] + " " + colorPrefs[3], "msg");
+        	//Log.i("Prefs: " + graysRem + " " + colorPrefs[0] + " " + colorPrefs[1] + " " + colorPrefs[2] + " " + colorPrefs[3], "msg");
             //g.setColor(0xff74AC23);
             g.invalidate();
         }
     };
+    
+    public void loadSaved(){
+    	//If it has data get it from the server, store in colorPrefs
+    	//Or just load the zeros? Anyway TBD
+    	colorSwitcher(rvRed, Color.RED, colorPrefs[0]);
+    	colorSwitcher(rvYellow, Color.YELLOW, colorPrefs[1]);
+    	colorSwitcher(rvOrange, 0xffff9900, colorPrefs[2]);
+    	colorSwitcher(rvPink, 0xffff87c3, colorPrefs[3]);
+    	graysRem = 0; //GraysRem must be zero if you are to save preferences
+    	colorSwitcher(rvGray, Color.GRAY, graysRem);
+    }
     
     public void colorSwitcher(RectangleView array[], int c, int lev){
     	for (int i = 1; i < 13; i++){
