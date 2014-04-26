@@ -7,7 +7,7 @@ import android.graphics.drawable.shapes.RectShape;
 import android.view.View;
 
 public class RectangleView extends View {
-	private ShapeDrawable mDrawable;
+	protected ShapeDrawable mDrawable;
 	private int level;
 	private int color; //Gray = 0, Red = 1; Yellow = 2; Orange = 3; Pink = 4;
 
@@ -18,7 +18,7 @@ public class RectangleView extends View {
 
     	int x = 10;
     	int y = 10;
-    	int width = 50;
+    	int width = 70;
     	int height = 50;
 
     	mDrawable = new ShapeDrawable(new RectShape());
