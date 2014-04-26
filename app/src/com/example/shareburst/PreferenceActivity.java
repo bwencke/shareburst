@@ -63,13 +63,13 @@ public class PreferenceActivity extends Activity {
 		LinearLayout cols = new LinearLayout(getApplicationContext());
 		//cols.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
 				//LinearLayout.LayoutParams.WRAP_CONTENT));
-		LinearLayout total = new LinearLayout(getApplicationContext());
+		//LinearLayout total = new LinearLayout(getApplicationContext());
 		//RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		//relativeParams.addRule(RelativeLayout.BELOW, cols.getId());
 		//relativeParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-		total.setOrientation(LinearLayout.VERTICAL);
+		//total.setOrientation(LinearLayout.VERTICAL);
 		//total.setScrollContainer(true);
-		cols.setBackgroundColor(Color.BLUE);
+		//cols.setBackgroundColor(Color.BLUE);
 		
 		LinearLayout colGray = new LinearLayout(getApplicationContext());
 		colGray.setOrientation(LinearLayout.VERTICAL);
@@ -159,10 +159,10 @@ public class PreferenceActivity extends Activity {
 		cols.addView(colOran);
 		cols.addView(colPink);
 		
-		total.setBackgroundColor(Color.GREEN);
+		//total.setBackgroundColor(Color.GREEN);
 		
-		total.addView(cols);
-		setContentView(total);
+		//total.addView(cols);
+		setContentView(cols);
 	}
 	
 	public void clear(){
