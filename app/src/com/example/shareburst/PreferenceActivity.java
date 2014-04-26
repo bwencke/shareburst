@@ -328,7 +328,7 @@ public class PreferenceActivity extends Activity {
 	        return true;
         case R.id.action_accept:
         	if (graysRem > 0){
-				Toast.makeText(getApplicationContext(), "You have " + graysRem + " more Starbursts to distribute!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "You have " + graysRem + " more Starburst(s) to distribute!", Toast.LENGTH_SHORT).show();
 			} else {
 				Log.i("What", graysRem + "");
 				finish();
