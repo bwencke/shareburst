@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,8 @@ public class GroupAdapter extends ArrayAdapter<Group> {
             	}
             	if(i > 0) {
             		users += ", ";
+            	} else {
+            		users += "Includes ";
             	}
             	users += a.getUserName();
             	i++;

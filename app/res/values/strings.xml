@@ -17,6 +17,8 @@
     <string name="create_group">Create Group</string>
     <string name="action_accept">Accept</string>
     <string name="action_discard">Clear</string>
+    <string name="action_new">New Group</string>
+    <string name="action_edit_account">Edit Account</string>
 
     <string-array name="starburstFacts">
         <item>Starburst is rumored to have inspired the pop art movement.</item>
@@ -31,6 +33,6 @@
         <item>It would take about 30 million packs of Starbursts to go from New York to Los Angeles.</item>
     </string-array>
 
-    <string name="title_activity_groups">Groups I\'m In</string>
+    <string name="title_activity_groups">My Groups</string>
 
 </resources>

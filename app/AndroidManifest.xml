@@ -49,8 +49,7 @@
         </activity>
         <activity
             android:name="com.example.shareburst.GroupsActivity"
-            android:label="@string/title_activity_groups"
-            android:parentActivityName="com.example.shareburst.GroupsActivity" >
+            android:label="@string/title_activity_groups" >
         </activity>
     </application>
 
