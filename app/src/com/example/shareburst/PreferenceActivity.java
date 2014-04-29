@@ -2,8 +2,10 @@ package com.example.shareburst;
 
 import java.util.concurrent.TimeUnit;
 
+import com.example.data.UserName;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
+import com.example.rest.Preferences;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -49,6 +51,8 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 	RectangleView rvOrange[];
 	RectangleView rvPink[];
 	Boolean noCurrentPrefs = true;
+	User currUser;
+	Preferences savePrefs;
 	
 	int colorLightGray = Color.rgb(223, 224, 224);
 	int colorRed = Color.rgb(234, 0, 9);
@@ -343,8 +347,13 @@ public class PreferenceActivity extends Activity implements ModifyUser {
         	if (graysRem > 0){
 				Toast.makeText(getApplicationContext(), "You have " + graysRem + " more Starburst(s) to distribute!", Toast.LENGTH_SHORT).show();
 			} else {
-				Log.i("What", graysRem + "");
-				//new PutUser(getAppl);
+				Log.i("What", graysRem + " " + colorPrefs[2]);
+				savePrefs = new Preferences();
+				savePrefs.setRed(colorPrefs[0]);
+				savePrefs.setYellow(colorPrefs[1]);
+				savePrefs.setOrange(colorPrefs[2]);
+				savePrefs.setPink(colorPrefs[3]);
+				new GetUser(PreferenceActivity.this, this, UserName.getUserName(getApplicationContext())).execute();
 			}
             return true;
         case R.id.action_discard:
@@ -407,12 +416,25 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 	@Override
 	public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
-		
+		switch (method){
+		case GET:
+			currUser = (User) user;
+			Log.i("Legit?", UserName.getUserName(this) + " " + currUser.getFirstName());
+			currUser.setPreferences(savePrefs);
+			currUser.setPassword("pass");
+			new PutUser(PreferenceActivity.this, this, currUser).execute();
+			break;
+		case PUT:
+		default:
+			finish();
+		}
 	}
 
 	@Override
 	public void modifyUserFailure(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
+		Toast.makeText(getApplicationContext(), "Clickin", Toast.LENGTH_SHORT).show();
+		Log.i("Yo", "Failed");
 		
 	}
 
