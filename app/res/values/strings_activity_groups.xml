@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="title_activity_groups">My Groups</string>
+    
+    <string name="action_new">New Group</string>
+    <string name="action_edit_account">Edit Account</string>
+</resources>

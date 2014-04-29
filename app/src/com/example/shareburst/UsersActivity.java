@@ -3,8 +3,8 @@ package com.example.shareburst;
 import java.util.ArrayList;
 
 import com.example.data.UserName;
-import com.example.rest.Group;
-import com.example.rest.ModifyGroup;
+import com.example.rest.User;
+import com.example.rest.ModifyUser;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -24,12 +24,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class GroupsActivity extends Activity {
+public class UsersActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_groups);
+		setContentView(R.layout.activity_users);
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -41,7 +41,7 @@ public class GroupsActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.groups, menu);
+		getMenuInflater().inflate(R.menu.users, menu);
 		return true;
 	}
 
@@ -51,28 +51,24 @@ public class GroupsActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		switch (item.getItemId()) {
-        case R.id.action_new:
-        	Intent intent = new Intent(getApplicationContext(), NewGroupActivity.class);
-        	startActivityForResult(intent, 1);
+        case R.id.action_logout:
+        	UserName.clearUserName(getApplicationContext());
+    		Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+    		startActivity(intent);
+    		finish();
         	return true;
-        case R.id.action_edit_account:
-        	Toast.makeText(getApplicationContext(), "edit account", Toast.LENGTH_LONG).show();
-            return true;
-        case R.id.action_settings:
-        	Toast.makeText(getApplicationContext(), "settings", Toast.LENGTH_LONG).show();
-            return true;
         default:
             return super.onOptionsItemSelected(item);
 		}
 	}
-
+	
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class PlaceholderFragment extends Fragment implements ModifyGroup {
+	public static class PlaceholderFragment extends Fragment implements ModifyUser {
 
-		GroupAdapter adapter;
-		ListView groupsList;
+		UserAdapter adapter;
+		ListView usersList;
 		
 		public PlaceholderFragment() {
 		}
@@ -80,35 +76,42 @@ public class GroupsActivity extends Activity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_groups,
+			View rootView = inflater.inflate(R.layout.fragment_users,
 					container, false);
 			
-			groupsList = (ListView) rootView.findViewById(R.id.groupsList);
-			groupsList.setOnItemClickListener(new OnItemClickListener() {
+			usersList = (ListView) rootView.findViewById(R.id.usersList);
+			usersList.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					// TODO Auto-generated method stub
-					Toast.makeText(getActivity(), "Fuck you, " + UserName.getUserName(getActivity()) + ".", Toast.LENGTH_SHORT).show();
+					User u = (User) usersList.getItemAtPosition(position);
+					Intent returnIntent = new Intent();
+					returnIntent.putExtra("userName",u.getUserName());
+					returnIntent.putExtra("firstName",u.getFirstName());
+					returnIntent.putExtra("lastName",u.getLastName());
+					getActivity().setResult(RESULT_OK,returnIntent);     
+					getActivity().finish();
 				}
 				
 			});
-			new ListGroup(getActivity(), this, UserName.getUserName(getActivity())).execute();
+			new ListUser(getActivity(), this).execute();
 			
 			return rootView;
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
-		public void modifyGroupSuccess(ModifyGroupMethods method, Object group) {
+		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
-			adapter = new GroupAdapter(getActivity(), R.id.groupsList, (ArrayList<Group>) group);
-			groupsList.setAdapter(adapter);
-	    	groupsList.setVisibility(View.VISIBLE);
+			adapter = new UserAdapter(getActivity(), R.id.usersList, (ArrayList<User>) user);
+			usersList.setAdapter(adapter);
+	    	usersList.setVisibility(View.VISIBLE);
 		}
 
 		@Override
-		public void modifyGroupFailure(ModifyGroupMethods method, Object group) {
+		public void modifyUserFailure(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
 			Toast.makeText(getActivity(), "NOT WORK", Toast.LENGTH_LONG).show();
 		}

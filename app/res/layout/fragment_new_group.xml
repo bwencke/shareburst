@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.shareburst.NewGroupActivity$PlaceholderFragment" >
+
+    <EditText
+        android:id="@+id/groupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:hint="@string/groupName"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+    
+    <TextView
+        android:id="@+id/numPacketsPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_below="@id/groupName"
+		android:textSize="20sp"
+		android:layout_margin="5dp"
+        android:text="@string/numPackets" />
+
+     <EditText
+         android:id="@+id/numPackets"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_below="@id/groupName"
+         android:layout_toRightOf="@id/numPacketsPrompt"
+         android:ems="10"
+         android:hint="0" >
+
+    </EditText>
+    
+     <TextView
+	        android:id="@+id/users"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/numPackets"
+	        android:text="@string/users"
+	        android:textSize="25sp"
+	        android:textStyle="italic"
+	        android:fontFamily="sans-serif-light"
+	        android:layout_margin="5dp" />
+
+    <ListView
+        android:id="@+id/addedUsersList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/users"
+        android:layout_centerHorizontal="true" >
+    </ListView>
+
+</RelativeLayout>

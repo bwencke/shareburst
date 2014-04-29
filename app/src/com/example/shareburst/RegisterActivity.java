@@ -109,7 +109,7 @@ public class RegisterActivity extends Activity {
 		}
 
 		@Override
-		public void modifyUserSuccess(ModifyUserMethods method, User user) {
+		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
 			Intent returnIntent = new Intent();
 			returnIntent.putExtra("username",usernameView.getText().toString());
@@ -119,7 +119,7 @@ public class RegisterActivity extends Activity {
 		}
 
 		@Override
-		public void modifyUserFailure(ModifyUserMethods method, User user) {
+		public void modifyUserFailure(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
 			Toast.makeText(getActivity(), "Failed to create user.", Toast.LENGTH_SHORT).show();
 		}

@@ -405,13 +405,13 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 	}
 
 	@Override
-	public void modifyUserSuccess(ModifyUserMethods method, User user) {
+	public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void modifyUserFailure(ModifyUserMethods method, User user) {
+	public void modifyUserFailure(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -176,7 +176,7 @@ public class LoginActivity extends Activity implements ModifyUser {
 	}
 
 	@Override
-	public void modifyUserSuccess(ModifyUserMethods method, User user) {
+	public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
 		mAuthTask = null;
 
@@ -186,7 +186,7 @@ public class LoginActivity extends Activity implements ModifyUser {
 	}
 
 	@Override
-	public void modifyUserFailure(ModifyUserMethods method, User user) {
+	public void modifyUserFailure(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
 		mAuthTask = null;
 		

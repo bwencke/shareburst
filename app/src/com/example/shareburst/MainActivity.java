@@ -81,13 +81,13 @@ public class MainActivity extends Activity implements ModifyUser {
 	}
 
 	@Override
-	public void modifyUserSuccess(ModifyUserMethods method, User user) {
+	public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), user.getUserName(), Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), ((User)user).getUserName(), Toast.LENGTH_LONG).show();
 	}
 
 	@Override
-	public void modifyUserFailure(ModifyUserMethods method, User user) {
+	public void modifyUserFailure(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
 		Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_LONG).show();
 	}

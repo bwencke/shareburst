@@ -51,6 +51,14 @@
             android:name="com.example.shareburst.GroupsActivity"
             android:label="@string/title_activity_groups" >
         </activity>
+        <activity
+            android:name="com.example.shareburst.NewGroupActivity"
+            android:label="@string/title_activity_new_group" >
+        </activity>
+        <activity
+            android:name="com.example.shareburst.UsersActivity"
+            android:label="@string/title_activity_users" >
+        </activity>
     </application>
 
 </manifest>

@@ -63,5 +63,17 @@ public class User {
 	public void setPreferences(Preferences preferences) {
 		this.preferences = preferences;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		if(o == null) {
+			return false;
+		}
+		if(((User) o).getUserName().equals(this.getUserName())) {
+			return true;
+		}
+		return false;
+	}
 
 }

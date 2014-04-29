@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+
+import com.example.rest.User;
+
 import android.content.Context;
 
 /**
@@ -12,7 +15,8 @@ import android.content.Context;
 public class UserName {
     private static final String USERNAME = "USERNAME";
     private static String username = null;
-
+    public static User user = new User();
+    
     /**
      * Gets the Company Code
      * 
@@ -20,22 +24,17 @@ public class UserName {
      * @return the Company Code as a String
      */
     public static String getUserName(Context context) {
-    	if(username != null) {
-    		// already downloaded from the file...done!
-    		return username;
-    	} else {
+    	if(user.getUserName() == null) {
     		// need to load the username from the file
 	    	File userNameFile = new File(context.getFilesDir(), USERNAME);
 	    	try {
-	    		username = readUserNameFile(userNameFile);
-				return username;
+	    		user.setUserName(readUserNameFile(userNameFile));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	    	username = null;
-	    	return null;
     	}
+    	return user.getUserName();
     }
     
     /**
@@ -48,13 +47,13 @@ public class UserName {
     public static String setUserName(Context context, String username) {
     	File userNameFile = new File(context.getFilesDir(), USERNAME);
     	try {
-			UserName.username = writeUserNameFile(userNameFile, username);
-			return UserName.username;
+			user.setUserName(writeUserNameFile(userNameFile, username));
+			return user.getUserName();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	UserName.username = null;
+    	user.setUserName(null);
     	return null;
     }
     
@@ -71,7 +70,7 @@ public class UserName {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	username = null;
+    	user.setUserName(null);
     }
 
     private static String readUserNameFile(File userNameFile) throws IOException {
@@ -96,4 +95,12 @@ public class UserName {
         out.close();
         return username;
     }
+
+	public static User getUser() {
+		return user;
+	}
+
+	public static void setUser(User user) {
+		UserName.user = user;
+	}
 }

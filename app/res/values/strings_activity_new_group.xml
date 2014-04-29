@@ -1,0 +1,7 @@
+<resources>
+    <string name="title_activity_new_group">New Group</string>
+    <string name="users">Users</string>
+    <string name="groupName">Group Name</string>
+    <string name="numPackets">Starburst Packets:</string>
+    <string name="addUser">Add User</string>
+</resources>

@@ -131,19 +131,19 @@ public class HomeActivity extends Activity {
 		}
 		
 		public void updateView() {
-			String firstName = (user.getFirstName() != null) ? user.getFirstName() : user.getUserName();
+			String firstName = (UserName.getUser().getFirstName() != null) ? UserName.getUser().getFirstName() : UserName.getUser().getUserName();
 			msg.setText("Hello, " + firstName + "!");
 		}
 
 		@Override
-		public void modifyUserSuccess(ModifyUserMethods method, User user) {
+		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
-			this.user = (User) user;
+			UserName.setUser((User) user);
 			updateView();
 		}
 
 		@Override
-		public void modifyUserFailure(ModifyUserMethods method, User user) {
+		public void modifyUserFailure(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
 			UserName.setUserName(getActivity(), null);
 			Intent intent = new Intent(getActivity(), LoginActivity.class);
