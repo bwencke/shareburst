@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -78,8 +79,10 @@ public class PreferenceActivity extends Activity {
 		//Display display = getWindowManager().getDefaultDisplay();
 		//Point size = new Point();
 		//display.getSize(size);
+		instructions.setTypeface(Typeface.create("sans-serif-light", Typeface.ITALIC));
+		
 		instructions.setTextSize(20);
-		instructions.setPadding(30, 14, 30, 14);
+		instructions.setPadding(40, 30, 40, 30);
 		instructions.setTextColor(Color.BLACK);
 		instructions.setGravity(Gravity.CENTER_VERTICAL);
 		//instructions.setBackgroundColor(Color.MAGENTA);
@@ -182,6 +185,7 @@ public class PreferenceActivity extends Activity {
 		cols.addView(colYel);
 		cols.addView(colOran);
 		cols.addView(colPink);
+		cols.setPadding(30, 0, 40, 30);
 		
 		//total.setBackgroundColor(Color.GREEN);
 		
