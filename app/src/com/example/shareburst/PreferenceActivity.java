@@ -2,10 +2,14 @@ package com.example.shareburst;
 
 import java.util.concurrent.TimeUnit;
 
+import com.example.rest.ModifyUser;
+import com.example.rest.User;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -32,7 +36,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class PreferenceActivity extends Activity {
+public class PreferenceActivity extends Activity implements ModifyUser {
+	
 	int level;
 	int used;
 	int preferences[];
@@ -45,12 +50,12 @@ public class PreferenceActivity extends Activity {
 	RectangleView rvPink[];
 	Boolean noCurrentPrefs = true;
 	
-	int colorLightGray = Color.LTGRAY;
-	int colorRed = Color.RED;
-	int colorGray = Color.GRAY;
-	int colorYellow = Color.YELLOW;
-	int colorOrange = 0xffff9900;
-	int colorPink = 0xffff87c3;
+	int colorLightGray = Color.rgb(223, 224, 224);
+	int colorRed = Color.rgb(234, 0, 9);
+	int colorGray = Color.rgb(109, 109, 109);
+	int colorYellow = Color.rgb(237, 204, 11);
+	int colorOrange = Color.rgb(235, 124, 10);
+	int colorPink = Color.rgb(252, 86, 190);
 	
 
 	@Override
@@ -58,6 +63,7 @@ public class PreferenceActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 		//setContentView(R.layout.activity_main);
 		//level = 1;
 
@@ -113,6 +119,8 @@ public class PreferenceActivity extends Activity {
 		LinearLayout colPink = new LinearLayout(getApplicationContext());
 		colPink.setOrientation(LinearLayout.VERTICAL);
 		colPink.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.FILL_PARENT, 1));
+		LinearLayout colDumbEmptySpace = new LinearLayout(getApplicationContext());
+		colDumbEmptySpace.setLayoutParams(new LinearLayout.LayoutParams(0,LayoutParams.FILL_PARENT, 1));
 		
 		for (int i = 12; i > 0; i--){
 			rvGray[i] = new RectangleView(getApplicationContext(), i, 0);
@@ -181,6 +189,7 @@ public class PreferenceActivity extends Activity {
 		}
 		
 		cols.addView(colGray);
+		cols.addView(colDumbEmptySpace);
 		cols.addView(colRed);
 		cols.addView(colYel);
 		cols.addView(colOran);
@@ -335,7 +344,7 @@ public class PreferenceActivity extends Activity {
 				Toast.makeText(getApplicationContext(), "You have " + graysRem + " more Starburst(s) to distribute!", Toast.LENGTH_SHORT).show();
 			} else {
 				Log.i("What", graysRem + "");
-				finish();
+				//new PutUser(getAppl);
 			}
             return true;
         case R.id.action_discard:
@@ -393,6 +402,18 @@ public class PreferenceActivity extends Activity {
 			tv.setImageLevel(1);
 		}
 
+	}
+
+	@Override
+	public void modifyUserSuccess(ModifyUserMethods method, User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modifyUserFailure(ModifyUserMethods method, User user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
