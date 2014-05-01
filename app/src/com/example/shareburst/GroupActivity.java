@@ -256,14 +256,8 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 	public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
 		String userName = UserName.getUserName(getApplicationContext());
+		@SuppressWarnings("unchecked")
 		ArrayList<User> listOfUsers =  (ArrayList<User>) user;
-		for(int i = 0; i < listOfUsers.size(); i++) {
-			User u = listOfUsers.get(i);
-			if(u.getUserName() == null || u.getUserName().equals(userName)) {
-				listOfUsers.remove(i);
-				break;
-			}
-		}
 		UserName.setUsers(listOfUsers);
 		proceed = true;
 		loadTabs();

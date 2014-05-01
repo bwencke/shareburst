@@ -96,7 +96,7 @@ public class UsersActivity extends Activity {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					// TODO Auto-generated method stub
-					User u = (User) usersList.getItemAtPosition(position);
+					User u = (User) adapter.getItem(position);
 					Intent returnIntent = new Intent();
 					returnIntent.putExtra("userName",u.getUserName());
 					returnIntent.putExtra("firstName",u.getFirstName());
@@ -151,13 +151,6 @@ public class UsersActivity extends Activity {
 			// TODO Auto-generated method stub
 			String userName = UserName.getUserName(getActivity());
 			ArrayList<User> listOfUsers =  (ArrayList<User>) user;
-			for(int i = 0; i < listOfUsers.size(); i++) {
-				User u = listOfUsers.get(i);
-				if(u.getUserName() == null || u.getUserName().equals(userName)) {
-					listOfUsers.remove(i);
-					break;
-				}
-			}
 			UserName.setUsers(listOfUsers);
 			refreshView();
 		}

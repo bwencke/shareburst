@@ -91,6 +91,11 @@ public class UserAdapter extends ArrayAdapter<User> {
     }
     
     @Override
+    public User getItem(int position) {
+        return users.get(position);
+    }
+    
+    @Override
 	public Filter getFilter() {
 		// TODO Auto-generated method stub
 		Filter filter = new Filter() {

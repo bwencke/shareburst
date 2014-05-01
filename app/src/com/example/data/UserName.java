@@ -115,6 +115,13 @@ public class UserName {
 	}
 
 	public static void setUsers(ArrayList<User> users) {
+		for(int i = 0; i < users.size(); i++) {
+			User u = users.get(i);
+			if(u.getUserName() == null || u.getUserName().equals(username)) {
+				users.remove(i);
+				break;
+			}
+		}
 		UserName.users = users;
 	}
 	

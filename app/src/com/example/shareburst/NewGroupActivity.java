@@ -205,19 +205,21 @@ public class NewGroupActivity extends Activity {
 				Intent data) {
 			// TODO Auto-generated method stub
 			super.onActivityResult(requestCode, resultCode, data);
-			String userName = (String) data.getCharSequenceExtra("userName");
-			String firstName = (String) data.getCharSequenceExtra("firstName");
-			String lastName = (String) data.getCharSequenceExtra("lastName");
-			User newUser = new User();
-			newUser.setUserName(userName);
-			newUser.setFirstName(firstName);
-			newUser.setLastName(lastName);
-			if(selectedUsers.contains(newUser)) {
-				Toast.makeText(getActivity(), "User already added.", Toast.LENGTH_SHORT).show();
-				return;
+			if(resultCode == RESULT_OK) {
+				String userName = (String) data.getCharSequenceExtra("userName");
+				String firstName = (String) data.getCharSequenceExtra("firstName");
+				String lastName = (String) data.getCharSequenceExtra("lastName");
+				User newUser = new User();
+				newUser.setUserName(userName);
+				newUser.setFirstName(firstName);
+				newUser.setLastName(lastName);
+				if(selectedUsers.contains(newUser)) {
+					Toast.makeText(getActivity(), "User already added.", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				selectedUsers.add(selectedUsers.size()-1, newUser);
+				userAdapter.notifyDataSetChanged();
 			}
-			selectedUsers.add(selectedUsers.size()-1, newUser);
-			userAdapter.notifyDataSetChanged();
 		}
 		
 		@SuppressWarnings("unchecked")
