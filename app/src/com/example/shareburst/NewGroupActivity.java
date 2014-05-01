@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnGenericMotionListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -55,6 +57,10 @@ public class NewGroupActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void deleteUser(View v) {
+		Toast.makeText(getApplicationContext(), "Sdf", Toast.LENGTH_LONG).show();
+	}
 
 	/**
 	 * A placeholder fragment containing a simple view.
@@ -77,26 +83,6 @@ public class NewGroupActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_new_group,
 					container, false);
-			
-//			userSpinner = (Spinner) rootView.findViewById(R.id.userSpinner);
-//			userSpinner.setEnabled(false);
-//			userSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-//
-//				@Override
-//				public void onItemSelected(AdapterView<?> parent, View view,
-//						int position, long id) {
-//					// TODO Auto-generated method stub
-//					selectedUsers.add(users.get(position));
-//					userAdapter.notifyDataSetChanged();
-//				}
-//
-//				@Override
-//				public void onNothingSelected(AdapterView<?> parent) {
-//					// TODO Auto-generated method stub
-//					
-//				}
-//				
-//			});
 			
 			addedUsersListView = (ListView) rootView.findViewById(R.id.addedUsersList);
 			addedUsersListView.setOnItemClickListener(new OnItemClickListener() {
@@ -137,7 +123,7 @@ public class NewGroupActivity extends Activity {
 			selectedUsers.add(selectedUsers.size()-1, newUser);
 			userAdapter.notifyDataSetChanged();
 		}
-
+		
 		@SuppressWarnings("unchecked")
 		@Override
 		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
@@ -151,7 +137,7 @@ public class NewGroupActivity extends Activity {
 			// selected users listview
 			selectedUsers = new ArrayList<User>();
 			selectedUsers.add(null);
-			userAdapter = new UserAdapter(getActivity(), R.id.addedUsersList, selectedUsers);
+			userAdapter = new UserAdapter(getActivity(), R.id.addedUsersList, selectedUsers, true);
 			addedUsersListView.setAdapter(userAdapter);
 			
 		}

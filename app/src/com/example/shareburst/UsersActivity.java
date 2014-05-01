@@ -105,7 +105,7 @@ public class UsersActivity extends Activity {
 		@Override
 		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
-			adapter = new UserAdapter(getActivity(), R.id.usersList, (ArrayList<User>) user);
+			adapter = new UserAdapter(getActivity(), R.id.usersList, (ArrayList<User>) user, false);
 			usersList.setAdapter(adapter);
 	    	usersList.setVisibility(View.VISIBLE);
 		}

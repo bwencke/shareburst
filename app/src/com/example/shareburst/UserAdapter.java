@@ -22,11 +22,13 @@ public class UserAdapter extends ArrayAdapter<User> {
 	
 	private ArrayList<User> users;
     private Activity activity;
+    private boolean canDelete;
  
-    public UserAdapter(Activity activity, int textViewResourceId, ArrayList<User> users) {
+    public UserAdapter(Activity activity, int textViewResourceId, ArrayList<User> users, boolean canDelete) {
         super(activity, textViewResourceId, users);
         this.users = users;
         this.activity = activity;
+        this.canDelete = canDelete;
     }
  
     /**
@@ -34,7 +36,7 @@ public class UserAdapter extends ArrayAdapter<User> {
      */
     public static class ViewHolder {
         public TextView item1;
-		public TextView item2;
+		//public TextView item2;
     }
  
     @Override
@@ -43,19 +45,27 @@ public class UserAdapter extends ArrayAdapter<User> {
         ViewHolder holder;
         LayoutInflater vi =
                 (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        v = vi.inflate(android.R.layout.simple_list_item_2, null);
+        if(canDelete) {
+        	v = vi.inflate(R.layout.listitemwithdelete, null);
+        } else {
+        	v = vi.inflate(android.R.layout.simple_list_item_1, null);
+        }
         holder = new ViewHolder();
-        holder.item1 = (TextView) v.findViewById(android.R.id.text1);
-        holder.item2 = (TextView) v.findViewById(android.R.id.text2);
+        if(canDelete) {
+        	holder.item1 = (TextView) v.findViewById(R.id.textView1);
+        } else {
+        	holder.item1 = (TextView) v.findViewById(android.R.id.text1);
+        }
+        //holder.item2 = (TextView) v.findViewById(android.R.id.text2);
         v.setTag(holder);
  
         final User user = users.get(position);
         if (user != null && user.getUserName() != null) {
         	// set item values
             holder.item1.setText(
-            		((user.getFirstName() == null) ? "" : user.getFirstName()) + 
+            		((user.getFirstName() == null) ? "" : user.getFirstName()) + " " +
             		((user.getLastName() == null) ? "" : user.getLastName()));
-            holder.item2.setText(user.getUserName());
+            //holder.item2.setText(user.getUserName());
         } else {
         	v = vi.inflate(R.layout.adduser, null);
         }
