@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import com.example.data.UserName;
 import com.example.rest.Group;
 import com.example.rest.ModifyGroup;
+import com.example.rest.ModifyUser.GetUser;
 import com.example.rest.ModifyUser.ListUser;
 
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -46,6 +51,7 @@ public class GroupsActivity extends Activity {
 
 		GroupAdapter adapter;
 		ListView groupsList;
+		TextView msg;
 		
 		public PlaceholderFragment() {
 		}
@@ -61,6 +67,62 @@ public class GroupsActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_groups,
 					container, false);
+			
+			msg = (TextView) rootView.findViewById(R.id.textView1);
+			
+			final TextView fact = (TextView) rootView.findViewById(R.id.starburstFact);
+			Resources res = getResources();
+			final String[] facts = res.getStringArray(R.array.starburstFacts);
+			final int index = (int) (Math.random() * facts.length);
+			fact.setText(facts[index]);
+			fact.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					fact.animate()
+		            .alpha(0f)
+		            .setDuration(400)
+		            .setListener(new AnimatorListener() {
+
+						@Override
+						public void onAnimationStart(Animator animation) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void onAnimationEnd(Animator animation) {
+							// TODO Auto-generated method stub
+							int newIndex = 0;
+							do {
+								newIndex = (int) (Math.random() * facts.length);
+							} while(newIndex == index);
+							fact.setText(facts[newIndex]);
+							
+							fact.animate()
+				            .alpha(1f)
+				            .setDuration(400)
+				            .setListener(null);
+						}
+
+						@Override
+						public void onAnimationCancel(Animator animation) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void onAnimationRepeat(Animator animation) {
+							// TODO Auto-generated method stub
+							
+						}
+		            	
+		            });
+					
+				}
+				
+			});
 			
 			groupsList = (ListView) rootView.findViewById(R.id.groupsList);
 			groupsList.setOnItemClickListener(new OnItemClickListener() {
