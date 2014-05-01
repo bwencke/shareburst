@@ -15,6 +15,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,12 +35,12 @@ import android.widget.Toast;
 import android.os.Build;
 
 public class NewGroupActivity extends Activity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_group);
-
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -51,6 +52,9 @@ public class NewGroupActivity extends Activity {
 	 */
 	public static class PlaceholderFragment extends Fragment implements ModifyGroup, ModifyUser, DeleteUser {
 
+		int groupID;
+		Group g;
+		
 		EditText groupName;
 		EditText numPackets;
 		ListView addedUsersListView;
@@ -75,6 +79,8 @@ public class NewGroupActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_new_group,
 					container, false);
 			
+			groupID = getActivity().getIntent().getIntExtra("groupID", 0);
+			
 			groupName = (EditText) rootView.findViewById(R.id.groupName);
 			numPackets = (EditText) rootView.findViewById(R.id.numPackets);
 			addedUsersListView = (ListView) rootView.findViewById(R.id.addedUsersList);
@@ -92,7 +98,26 @@ public class NewGroupActivity extends Activity {
 				
 			});
 			
-			new ListUser(getActivity(), this).execute();
+			g = null;
+			if(groupID > 0) {
+				for(Group g : UserName.getGroups()) {
+					if(g.getGroupID() == groupID) {
+						this.g = g;
+						break;
+					}
+				}
+				if(g != null) {
+					groupName.setText(g.getGroupName());
+					groupName.setSelection(groupName.getText().length());
+					numPackets.setText(g.getnPackets()+"");
+				}
+			}
+			
+			if(UserName.getUsers() == null) {
+				new ListUser(getActivity(), this).execute();
+			} else {
+				setupView();
+			}
 			
 			return rootView;
 		}
@@ -103,10 +128,34 @@ public class NewGroupActivity extends Activity {
 			super.onCreateOptionsMenu(menu, inflater);
 		}
 		
+		public void setupView() {
+			User you = new User();
+			you.setUserName(UserName.getUserName(getActivity()));
+			you.setFirstName("Me");
+			
+			selectedUsers = new ArrayList<User>();
+			selectedUsers.add(you);
+			if(g != null) {
+				for(Assignments a : g.getAssignments()) {
+					for(User u : UserName.getUsers()) {
+						if(!u.getUserName().equals(UserName.getUserName(getActivity())) && u.getUserName().equals(a.getUserName())) {
+							selectedUsers.add(u);
+						}
+					}
+				}
+			}
+			selectedUsers.add(null);
+			userAdapter = new UserAdapter(getActivity(), R.id.addedUsersList, selectedUsers, this);
+			addedUsersListView.setAdapter(userAdapter);
+		}
+		
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item) {
 		    // Handle item selection
 		    switch (item.getItemId()) {
+		    case android.R.id.home:
+		        getActivity().finish();
+		        return true;
 		    case R.id.action_accept:
 		    	String name = groupName.getText().toString();
 		    	int packets;
@@ -124,6 +173,9 @@ public class NewGroupActivity extends Activity {
 		    		return false;
 		    	}
 		    	Group g = new Group();
+		    	if(this.g != null) {
+		    		g.setGroupID(this.g.getGroupID());
+		    	}
 		    	g.setGroupName(name);
 		    	g.setnPackets(packets);
 		    	ArrayList<Assignments> assignments = new ArrayList<Assignments>();
@@ -171,16 +223,8 @@ public class NewGroupActivity extends Activity {
 		@SuppressWarnings("unchecked")
 		@Override
 		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
-			User you = new User();
-			you.setUserName(UserName.getUserName(getActivity()));
-			you.setFirstName("Me");
-			
-			selectedUsers = new ArrayList<User>();
-			selectedUsers.add(you);
-			selectedUsers.add(null);
-			userAdapter = new UserAdapter(getActivity(), R.id.addedUsersList, selectedUsers, this);
-			addedUsersListView.setAdapter(userAdapter);
-			
+			UserName.setUsers((ArrayList<User>) user);
+			setupView();
 		}
 
 		@Override

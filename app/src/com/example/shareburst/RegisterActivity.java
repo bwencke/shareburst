@@ -73,9 +73,15 @@ public class RegisterActivity extends Activity {
 			View rootView = inflater.inflate(R.layout.fragment_register,
 					container, false);
 			
+			String username = getActivity().getIntent().getStringExtra("username");
+			String password = getActivity().getIntent().getStringExtra("password");
+			
 			nameView = (EditText) rootView.findViewById(R.id.nameField);
+			nameView.requestFocus();
 			usernameView = (EditText) rootView.findViewById(R.id.usernameField);
+			usernameView.setText(username);
 			passwordView = (EditText) rootView.findViewById(R.id.passwordField);
+			passwordView.setText(password);
 			registerButton = (Button) rootView.findViewById(R.id.registerButton);
 			registerButton.setOnClickListener(new OnClickListener() {
 

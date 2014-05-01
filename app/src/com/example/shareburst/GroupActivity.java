@@ -8,12 +8,14 @@ import com.example.rest.Assignments;
 import com.example.rest.Group;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
+import com.example.rest.ModifyGroup.ListGroup;
 
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -101,11 +103,25 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		switch (item.getItemId()) {
+	    case R.id.action_edit:
+	    	Intent intent = new Intent(getApplicationContext(), NewGroupActivity.class);
+	    	intent.putExtra("groupID", group.getGroupID());
+	    	intent.putExtra("returnToGroupActivity", true);
+	    	startActivityForResult(intent, 1);
+	    	return true;
+        case R.id.action_edit_account:
+        	Toast.makeText(getApplicationContext(), "edit account", Toast.LENGTH_LONG).show();
+            return true;
+        case R.id.action_logout:
+        	UserName.clearUserName(getApplicationContext());
+    		Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+    		startActivity(i);
+    		finish();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

@@ -87,6 +87,8 @@ public class LoginActivity extends Activity implements ModifyUser {
 					@Override
 					public void onClick(View view) {
 						Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+						intent.putExtra("username", mUserNameView.getText().toString());
+						intent.putExtra("password", mPasswordView.getText().toString());
 						startActivityForResult(intent, 1);
 					}
 				});
@@ -104,22 +106,23 @@ public class LoginActivity extends Activity implements ModifyUser {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		try {
-			String username = (String) data.getCharSequenceExtra("username");
-			String password = (String) data.getCharSequenceExtra("password");
-			
-			mUserNameView.setText(username);
-			mPasswordView.setText(password);
-			
-			mPasswordView.setSelection(mPasswordView.getText().length());
-			
-		} catch(Exception e) {
-			Toast.makeText(getApplicationContext(), "Oops. Something went wrong.", Toast.LENGTH_LONG).show();
-			return;
-		}
+		if(resultCode == RESULT_OK) {
+			try {
+				String username = (String) data.getCharSequenceExtra("username");
+				String password = (String) data.getCharSequenceExtra("password");
+				
+				mUserNameView.setText(username);
+				mPasswordView.setText(password);
+				
+				mPasswordView.setSelection(mPasswordView.getText().length());
+				
+			} catch(Exception e) {
+				Toast.makeText(getApplicationContext(), "Oops. Something went wrong.", Toast.LENGTH_LONG).show();
+				return;
+			}
 		
-		attemptLogin();
-		//mPasswordView.requestFocus();
+			attemptLogin();
+		}
 	}
 	
 	/**
