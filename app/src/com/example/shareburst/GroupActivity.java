@@ -209,11 +209,13 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
+		private static final String USERNAME = "username";
 		private static final String ARG_RED = "num_red";
 		private static final String ARG_YELLOW = "num_yellow";
 		private static final String ARG_PINK = "num_pink";
 		private static final String ARG_ORANGE = "num_orange";
 		
+		private String username;
 		private int red;
 		private int yellow;
 		private int pink;
@@ -225,6 +227,7 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 		public static PlaceholderFragment newInstance(Assignments a) {
 			PlaceholderFragment fragment = new PlaceholderFragment();
 			Bundle args = new Bundle();
+			args.putString(USERNAME, a.getUserName());
 			args.putInt(ARG_RED, a.getRed());
 			args.putInt(ARG_YELLOW, a.getYellow());
 			args.putInt(ARG_PINK, a.getPink());
@@ -243,11 +246,19 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 					container, false);
 			TextView textView = (TextView) rootView
 					.findViewById(R.id.section_label);
+			username = getArguments().getString(USERNAME);
 			red = getArguments().getInt(ARG_RED);
 			yellow = getArguments().getInt(ARG_YELLOW);
 			pink = getArguments().getInt(ARG_PINK);
 			orange = getArguments().getInt(ARG_ORANGE);
 			textView.setText("Red: " + red + "\nYellow: " + yellow + "\nPink: " + pink + "\nOrange: " + orange);
+			
+			TextView name = (TextView) rootView
+					.findViewById(R.id.name);
+			for(User u : UserName.getUsers()) {
+				name.setText(u.getName());
+			}
+			
 			return rootView;
 		}
 	}
