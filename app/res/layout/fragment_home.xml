@@ -45,31 +45,5 @@
             android:text="@string/create_group"
             android:layout_below="@id/prefs_button"
             />
-        
-        <RelativeLayout
-        android:id="@+id/footer"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true" 
-        android:layout_margin="10dp">
-    <TextView
-        android:id="@+id/starburstFactTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/starburstFact"
-        android:text="@string/starburst_fact"
-        android:textSize="20sp"
-        android:textStyle="bold|italic" />
-         
-     <TextView
-	     android:id="@id/starburstFact"
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:layout_alignParentBottom="true"
-	     android:text="@string/default_fact"
-	     android:textSize="18sp"
-	     android:layout_margin="5dp" />
-     
-     </RelativeLayout>
 
 </RelativeLayout>

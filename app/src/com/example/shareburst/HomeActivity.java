@@ -84,24 +84,6 @@ public class HomeActivity extends Activity {
 			msg = (TextView) rootView.findViewById(R.id.textView1);
 			new GetUser(getActivity(), this, UserName.getUserName(getActivity())).execute();
 			
-			final TextView fact = (TextView) rootView.findViewById(R.id.starburstFact);
-			Resources res = getResources();
-			final String[] facts = res.getStringArray(R.array.starburstFacts);
-			final int index = (int) (Math.random() * facts.length);
-			fact.setText(facts[index]);
-			fact.setOnClickListener(new View.OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					int newIndex = 0;
-					do {
-						newIndex = (int) (Math.random() * facts.length);
-					} while(newIndex == index);
-					fact.setText(facts[newIndex]);
-				}
-				
-			});
 			
 			preferencesButton = (Button) rootView.findViewById(R.id.prefs_button);
 			preferencesButton.setOnClickListener(new OnClickListener() {
