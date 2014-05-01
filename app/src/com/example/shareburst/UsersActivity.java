@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,31 +37,6 @@ public class UsersActivity extends Activity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.users, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		switch (item.getItemId()) {
-        case R.id.action_logout:
-        	UserName.clearUserName(getApplicationContext());
-    		Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-    		startActivity(intent);
-    		finish();
-        	return true;
-        default:
-            return super.onOptionsItemSelected(item);
-		}
-	}
 	
 	/**
 	 * A placeholder fragment containing a simple view.
@@ -71,6 +47,12 @@ public class UsersActivity extends Activity {
 		ListView usersList;
 		
 		public PlaceholderFragment() {
+		}
+		
+		@Override
+		public void onCreate(Bundle bundle) {
+			super.onCreate(bundle);
+			setHasOptionsMenu(true);
 		}
 		
 		@Override
@@ -96,18 +78,60 @@ public class UsersActivity extends Activity {
 				}
 				
 			});
-			new ListUser(getActivity(), this).execute();
+			if(UserName.getUsers() == null) {
+				new ListUser(getActivity(), this).execute();
+			} else {
+				refreshView();
+			}
 			
 			return rootView;
 		}
 
+		@Override
+		public void onCreateOptionsMenu (Menu menu, MenuInflater inflater) {
+			inflater.inflate(R.menu.users, menu);
+			super.onCreateOptionsMenu(menu, inflater);
+		}
+		
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+		    // Handle item selection
+		    switch (item.getItemId()) {
+		    case R.id.action_refresh:
+		    	new ListUser(getActivity(), this).execute();
+		    	return true;
+		    case R.id.action_logout:
+		    	UserName.clearUserName(getActivity());
+	    		Intent intent = new Intent(getActivity(), LoginActivity.class);
+	    		startActivity(intent);
+	    		getActivity().finish();
+				return true;
+		    default:
+		        return super.onOptionsItemSelected(item);
+		    }
+		}
+		
+		public void refreshView() {
+			adapter = new UserAdapter(getActivity(), R.id.usersList, UserName.getUsers(), null);
+			usersList.setAdapter(adapter);
+	    	usersList.setVisibility(View.VISIBLE);
+		}
+		
 		@SuppressWarnings("unchecked")
 		@Override
 		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
-			adapter = new UserAdapter(getActivity(), R.id.usersList, (ArrayList<User>) user, false);
-			usersList.setAdapter(adapter);
-	    	usersList.setVisibility(View.VISIBLE);
+			String userName = UserName.getUserName(getActivity());
+			ArrayList<User> listOfUsers =  (ArrayList<User>) user;
+			for(int i = 0; i < listOfUsers.size(); i++) {
+				User u = listOfUsers.get(i);
+				if(u.getUserName() == null || u.getUserName().equals(userName)) {
+					listOfUsers.remove(i);
+					break;
+				}
+			}
+			UserName.setUsers(listOfUsers);
+			refreshView();
 		}
 
 		@Override

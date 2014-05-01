@@ -64,6 +64,16 @@ public class User {
 		this.preferences = preferences;
 	}
 	
+	public String getName() {
+		if(getFirstName() != null && getLastName() != null) {
+			return getFirstName() + " " + getLastName();
+		} else if(getFirstName() != null) {
+			return getFirstName();
+		} else {
+			return getUserName();
+		}
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		// TODO Auto-generated method stub

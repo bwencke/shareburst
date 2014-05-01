@@ -21,7 +21,6 @@
        android:layout_marginRight="10dp"
        android:layout_centerVertical="true"
        android:layout_alignParentRight="true"
-       android:onClick="deleteUser"
        android:src="@drawable/ic_action_cancel" />
  
 </RelativeLayout>

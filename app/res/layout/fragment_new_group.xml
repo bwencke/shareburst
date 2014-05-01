@@ -16,32 +16,33 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:hint="@string/groupName"
+        android:textSize="20sp"
         android:ems="10" >
 
         <requestFocus />
+    </EditText>
+
+     <EditText
+         android:id="@+id/numPackets"
+         android:layout_width="50dp"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@id/groupName"
+         android:ems="10"
+         android:inputType="number"
+         android:hint="0" >
+
     </EditText>
     
     <TextView
         android:id="@+id/numPacketsPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true"
 		android:layout_below="@id/groupName"
+		android:layout_toRightOf="@id/numPackets"
 		android:textSize="20sp"
 		android:layout_margin="5dp"
         android:text="@string/numPackets" />
-
-     <EditText
-         android:id="@+id/numPackets"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignParentRight="true"
-         android:layout_below="@id/groupName"
-         android:layout_toRightOf="@id/numPacketsPrompt"
-         android:ems="10"
-         android:hint="0" >
-
-    </EditText>
     
      <TextView
 	        android:id="@+id/users"

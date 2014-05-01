@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
+import com.example.rest.Group;
 import com.example.rest.User;
 
 import android.content.Context;
@@ -16,6 +18,8 @@ public class UserName {
     private static final String USERNAME = "USERNAME";
     private static String username = null;
     public static User user = new User();
+    public static ArrayList<User> users = null;
+    public static ArrayList<Group> groups = null;
     
     /**
      * Gets the Company Code
@@ -71,6 +75,8 @@ public class UserName {
 			e.printStackTrace();
 		}
     	user.setUserName(null);
+    	users = null;
+    	groups = null;
     }
 
     private static String readUserNameFile(File userNameFile) throws IOException {
@@ -102,5 +108,21 @@ public class UserName {
 
 	public static void setUser(User user) {
 		UserName.user = user;
+	}
+	
+	public static ArrayList<User> getUsers() {
+		return users;
+	}
+
+	public static void setUsers(ArrayList<User> users) {
+		UserName.users = users;
+	}
+	
+	public static ArrayList<Group> getGroups() {
+		return groups;
+	}
+
+	public static void setGroups(ArrayList<Group> groups) {
+		UserName.groups = groups;
 	}
 }

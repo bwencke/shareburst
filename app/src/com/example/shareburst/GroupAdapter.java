@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.data.UserName;
 import com.example.rest.Assignments;
 import com.example.rest.Group;
 
@@ -60,14 +61,15 @@ public class GroupAdapter extends ArrayAdapter<Group> {
             String users = "";
             int i = 0;
             for(Assignments a : group.getAssignments()) {
+            	if(a == null || a.getUserName() == null || a.getUserName().equals(UserName.getUserName(activity))) {
+            		continue;
+            	}
             	if(i > 3) {
             		users += ", ...";
             		break;
             	}
             	if(i > 0) {
             		users += ", ";
-            	} else {
-            		users += "Includes ";
             	}
             	users += a.getUserName();
             	i++;

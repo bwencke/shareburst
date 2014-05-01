@@ -3,6 +3,13 @@
     tools:context="com.example.shareburst.UsersActivity" >
 
     <item
+        android:id="@+id/action_refresh"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_refresh"
+        android:title="@string/action_refresh"/>
+    
+    <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:showAsAction="never"

@@ -53,11 +53,18 @@
         </activity>
         <activity
             android:name="com.example.shareburst.NewGroupActivity"
-            android:label="@string/title_activity_new_group" >
+            android:label="@string/title_activity_new_group"
+            android:parentActivityName="com.example.shareburst.GroupsActivity" >
         </activity>
         <activity
             android:name="com.example.shareburst.UsersActivity"
-            android:label="@string/title_activity_users" >
+            android:label="@string/title_activity_users"
+            android:parentActivityName="com.example.shareburst.NewGroupActivity" >
+        </activity>
+        <activity
+            android:name="com.example.shareburst.GroupActivity"
+            android:label="@string/title_activity_group"
+            android:parentActivityName="com.example.shareburst.GroupsActivity" >
         </activity>
     </application>
 

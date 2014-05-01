@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Mgluglublug</string>
+    <string name="app_name">Best of Burst Worlds</string>
     <string name="default_greeting">Hello, starburst lover!</string>
     <string name="starburst_fact">Did you know...</string>
     <string name="default_fact">Starburst is rumored to have inspired the pop art movement.</string>
@@ -9,9 +9,10 @@
     <string name="what_to_do">What would you like to do?</string>
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
+    <string name="action_refresh">Refresh</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="button_submit">Submit!</string>
-    <string name="title_activity_home">Mgluglublug</string>
+    <string name="title_activity_home">Best of Burst Worlds</string>
     <string name="title_activity_preference">Preferences</string>
     <string name="set_preferences">Set Preferences</string>
     <string name="create_group">Create Group</string>
@@ -30,5 +31,10 @@
         <item>Packs come in flavors such as Original, Tropical, Sour and Favereds.</item>
         <item>It would take about 30 million packs of Starbursts to go from New York to Los Angeles.</item>
     </string-array>
+
+    <string name="title_activity_group">Group Information</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
 
 </resources>

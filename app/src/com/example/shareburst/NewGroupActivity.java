@@ -2,8 +2,13 @@ package com.example.shareburst;
 
 import java.util.ArrayList;
 
+import com.example.data.UserName;
+import com.example.rest.Assignments;
+import com.example.rest.Group;
+import com.example.rest.ModifyGroup;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
+import com.example.rest.ModifyUser.ListUser;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -12,14 +17,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnGenericMotionListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -38,36 +46,13 @@ public class NewGroupActivity extends Activity {
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.new_group, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
-	public void deleteUser(View v) {
-		Toast.makeText(getApplicationContext(), "Sdf", Toast.LENGTH_LONG).show();
-	}
-
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class PlaceholderFragment extends Fragment implements ModifyUser {
+	public static class PlaceholderFragment extends Fragment implements ModifyGroup, ModifyUser, DeleteUser {
 
-		Spinner userSpinner;
+		EditText groupName;
+		EditText numPackets;
 		ListView addedUsersListView;
 		
 		ArrayList<User> users;
@@ -79,11 +64,19 @@ public class NewGroupActivity extends Activity {
 		}
 
 		@Override
+		public void onCreate(Bundle bundle) {
+			super.onCreate(bundle);
+			setHasOptionsMenu(true);
+		}
+		
+		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_new_group,
 					container, false);
 			
+			groupName = (EditText) rootView.findViewById(R.id.groupName);
+			numPackets = (EditText) rootView.findViewById(R.id.numPackets);
 			addedUsersListView = (ListView) rootView.findViewById(R.id.addedUsersList);
 			addedUsersListView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -102,6 +95,57 @@ public class NewGroupActivity extends Activity {
 			new ListUser(getActivity(), this).execute();
 			
 			return rootView;
+		}
+		
+		@Override
+		public void onCreateOptionsMenu (Menu menu, MenuInflater inflater) {
+			inflater.inflate(R.menu.new_group, menu);
+			super.onCreateOptionsMenu(menu, inflater);
+		}
+		
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+		    // Handle item selection
+		    switch (item.getItemId()) {
+		    case R.id.action_accept:
+		    	String name = groupName.getText().toString();
+		    	int packets;
+		    	try {
+		    		packets = Integer.parseInt(numPackets.getText().toString());
+		    		if(packets < 1) {
+		    			throw new Exception("'" + packets + "' is not a natural number");
+		    		}
+		    	} catch(Exception e) {
+		    		Toast.makeText(getActivity(), "Number of packets invalid. It must be an natural number.", Toast.LENGTH_LONG).show();
+		    		return false;
+		    	}
+		    	if(name == null) {
+		    		Toast.makeText(getActivity(), "Seriously? Enter a group name next time.", Toast.LENGTH_LONG).show();
+		    		return false;
+		    	}
+		    	Group g = new Group();
+		    	g.setGroupName(name);
+		    	g.setnPackets(packets);
+		    	ArrayList<Assignments> assignments = new ArrayList<Assignments>();
+		    	for(User u : selectedUsers) {
+		    		if(u != null && u.getUserName() != null) {
+		    			Assignments a = new Assignments();
+		    			a.setUserName(u.getUserName());
+		    			assignments.add(a);
+		    		}
+		    	}
+		    	g.setAssignments(assignments);
+		    	new PutGroup(getActivity(), this, g).execute();
+		    	return true;
+		    case R.id.action_logout:
+		    	UserName.clearUserName(getActivity());
+	    		Intent intent = new Intent(getActivity(), LoginActivity.class);
+	    		startActivity(intent);
+	    		getActivity().finish();
+				return true;
+		    default:
+		        return super.onOptionsItemSelected(item);
+		    }
 		}
 		
 		@Override
@@ -127,17 +171,14 @@ public class NewGroupActivity extends Activity {
 		@SuppressWarnings("unchecked")
 		@Override
 		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
+			User you = new User();
+			you.setUserName(UserName.getUserName(getActivity()));
+			you.setFirstName("Me");
 			
-			// users spinner
-//			users = (ArrayList<User>) user;
-//			userAdapterSpinner = new UserAdapterSpinner(getActivity(), R.id.userSpinner, users);
-//			userSpinner.setAdapter(userAdapterSpinner);
-//			userSpinner.setEnabled(true);
-			
-			// selected users listview
 			selectedUsers = new ArrayList<User>();
+			selectedUsers.add(you);
 			selectedUsers.add(null);
-			userAdapter = new UserAdapter(getActivity(), R.id.addedUsersList, selectedUsers, true);
+			userAdapter = new UserAdapter(getActivity(), R.id.addedUsersList, selectedUsers, this);
 			addedUsersListView.setAdapter(userAdapter);
 			
 		}
@@ -146,6 +187,27 @@ public class NewGroupActivity extends Activity {
 		public void modifyUserFailure(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
 			Toast.makeText(getActivity(), "Not Good.", Toast.LENGTH_SHORT).show();
+		}
+
+		@Override
+		public void deleteUser(int position) {
+			// TODO Auto-generated method stub
+			selectedUsers.remove(position);
+			userAdapter.notifyDataSetChanged();
+		}
+
+		@Override
+		public void modifyGroupSuccess(ModifyGroupMethods method, Object group) {
+			// TODO Auto-generated method stub
+			UserName.getGroups().add((Group) group);
+			getActivity().finish();
+		}
+
+		@Override
+		public void modifyGroupFailure(ModifyGroupMethods method, Object group) {
+			// TODO Auto-generated method stub
+			Toast.makeText(getActivity(), "Oops! Creation failed. Maybe it just isn't meant to be.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "I suggest you try a healthier snack.", Toast.LENGTH_SHORT).show();
 		}
 	}
 
