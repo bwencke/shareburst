@@ -12,6 +12,8 @@ import android.app.Fragment;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.os.Build;
@@ -45,6 +48,7 @@ public class UsersActivity extends Activity {
 
 		UserAdapter adapter;
 		ListView usersList;
+		EditText inputSearch;
 		
 		public PlaceholderFragment() {
 		}
@@ -60,6 +64,30 @@ public class UsersActivity extends Activity {
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_users,
 					container, false);
+			
+			inputSearch = (EditText) rootView.findViewById(R.id.inputSearch);
+			inputSearch.addTextChangedListener(new TextWatcher() {
+
+				@Override
+				public void beforeTextChanged(CharSequence s, int start,
+						int count, int after) {
+					// TODO Auto-generated method stub
+				}
+
+				@Override
+				public void onTextChanged(CharSequence s, int start,
+						int before, int count) {
+					// TODO Auto-generated method stub
+					adapter.getFilter().filter(s);
+				}
+
+				@Override
+				public void afterTextChanged(Editable s) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
 			
 			usersList = (ListView) rootView.findViewById(R.id.usersList);
 			usersList.setOnItemClickListener(new OnItemClickListener() {

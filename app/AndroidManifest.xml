@@ -59,6 +59,7 @@
         <activity
             android:name="com.example.shareburst.UsersActivity"
             android:label="@string/title_activity_users"
+            android:windowSoftInputMode="stateHidden"
             android:parentActivityName="com.example.shareburst.NewGroupActivity" >
         </activity>
         <activity

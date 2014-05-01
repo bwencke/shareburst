@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ import com.example.rest.User;
  * An Adapter that takes Device objects and maps them to a ListView
  */
 public class UserAdapter extends ArrayAdapter<User> {
-	
+
 	private ArrayList<User> users;
     private Activity activity;
     private DeleteUser fragment;
@@ -83,5 +84,61 @@ public class UserAdapter extends ArrayAdapter<User> {
         }
         return v;
     }
+    
+    @Override
+    public int getCount() {
+        return users.size();
+    }
+    
+    @Override
+	public Filter getFilter() {
+		// TODO Auto-generated method stub
+		Filter filter = new Filter() {
+
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+				// TODO Auto-generated method stub
+				FilterResults results = new FilterResults();
+                ArrayList<User> FilteredArrayNames = new ArrayList<User>();
+
+                // perform your search here using the searchConstraint String.
+
+                constraint = constraint.toString().toLowerCase();
+                if(UserName.getUsers() == null) {
+                	return null;
+                }
+                for(User u : UserName.getUsers()) {
+                	if(u != null && u.getUserName() != null) {
+                		if(u.getUserName().toLowerCase().contains(constraint)) {
+                			FilteredArrayNames.add(u);
+                		} else if(u.getFirstName() != null && u.getFirstName().toLowerCase().contains(constraint)) {
+                			FilteredArrayNames.add(u);
+                		} else if(u.getLastName() != null && u.getLastName().toLowerCase().contains(constraint)) {
+                			FilteredArrayNames.add(u);
+                		} else if(u.getFirstName() != null && u .getLastName() != null && (u.getFirstName().toLowerCase() + " " + u.getLastName().toLowerCase()).contains(constraint)) {
+                			FilteredArrayNames.add(u);
+                		}
+                	}
+                }
+
+                results.count = FilteredArrayNames.size();
+                results.values = FilteredArrayNames;
+                Log.e("VALUES", results.values.toString());
+
+                return results;
+			}
+
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void publishResults(CharSequence constraint,
+					FilterResults results) {
+				// TODO Auto-generated method stub
+				users = (ArrayList<User>) results.values;
+                notifyDataSetChanged();
+			}
+			
+		};
+		return filter;
+	}
 
 }
