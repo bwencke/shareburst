@@ -183,7 +183,13 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 		rvGray[0].setColor(colorGray);
 		colGray.addView(rvGray[0]);
 
-		new GetUser(PreferenceActivity.this, this, UserName.getUserName(getApplicationContext())).execute();
+		//new GetUser(PreferenceActivity.this, this, UserName.getUserName(getApplicationContext())).execute();
+		
+		currUser = UserName.getUser();
+		savePrefs = currUser.getPreferences();
+		Log.i("PREFS", savePrefs.getOrange() + " " + savePrefs.getPink());
+		Log.i("Password5", UserName.getUser().getPassword());
+		loadSaved();
 		
 		cols.addView(colGray);
 		cols.addView(colDumbEmptySpace);
@@ -198,6 +204,7 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 		total.addView(instructions);
 		total.addView(cols);
 		setContentView(total);
+		
 	}
 	
 	public void clear(){
@@ -350,14 +357,16 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 				Toast.makeText(getApplicationContext(), "You have " + graysRem + " more Starburst(s) to distribute!", Toast.LENGTH_SHORT).show();
 			} else {
 				Log.i("What", graysRem + " " + colorPrefs[2]);
-				savePrefs = new Preferences();
+				//savePrefs = new Preferences();
 				savePrefs.setRed(colorPrefs[0]);
 				savePrefs.setYellow(colorPrefs[1]);
 				savePrefs.setOrange(colorPrefs[2]);
 				savePrefs.setPink(colorPrefs[3]);
 				//new GetUser(PreferenceActivity.this, this, UserName.getUserName(getApplicationContext())).execute();
-				currUser.setPreferences(savePrefs);
-				currUser.setPassword("pass");
+				//currUser.setPreferences(savePrefs);
+				//Log.i("Password", UserName.getUser().getPassword());
+				Log.i("Password6", UserName.getUser().getPassword());
+				//currUser.setPassword(UserName.getUser().getPassword());
 				new PutUser(PreferenceActivity.this, this, currUser).execute();
 			}
             return true;

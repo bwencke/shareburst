@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -183,6 +184,7 @@ public class LoginActivity extends Activity implements ModifyUser {
 		// TODO Auto-generated method stub
 		mAuthTask = null;
 
+		//UserName.getUser().setPassword(mPassword);
 		Intent intent = new Intent(this, HomeActivity.class);
 		startActivity(intent);
 		finish();

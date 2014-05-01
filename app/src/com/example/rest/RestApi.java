@@ -26,7 +26,7 @@ public interface RestApi {
     );
     
     @PUT("/users/login")
-    boolean loginUser(
+    User loginUser(
     		@Body User user
     );
     
