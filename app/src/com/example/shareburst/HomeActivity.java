@@ -82,7 +82,7 @@ public class HomeActivity extends Activity {
 					false);
 			
 			msg = (TextView) rootView.findViewById(R.id.textView1);
-			new GetUser(getActivity(), this, UserName.getUserName(getActivity())).execute();
+			//new GetUser(getActivity(), this, UserName.getUserName(getActivity())).execute();
 			
 			
 			preferencesButton = (Button) rootView.findViewById(R.id.prefs_button);

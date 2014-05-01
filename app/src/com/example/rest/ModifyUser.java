@@ -169,7 +169,7 @@ public interface ModifyUser {
 	    }
 	}
 	
-	class LoginUser extends AsyncTask<String, Void, Boolean> {
+	class LoginUser extends AsyncTask<String, Void, User> {
 
 		Context context;
 		ModifyUser callingActivity;
@@ -188,9 +188,9 @@ public interface ModifyUser {
         	progDialog.show();
 	    }
 		
-	    protected Boolean doInBackground(String... urls) {
+	    protected User doInBackground(String... urls) {
 	    	
-	    	Boolean b = false;
+	    	User u = null;
 	    	try {
 		    	RestAdapter restAdapter = new RestAdapter.Builder()
 		        .setEndpoint(RestApi.API_URL)
@@ -198,21 +198,22 @@ public interface ModifyUser {
 	
 			    // Create an instance of our API interface.
 			    RestApi restApi = restAdapter.create(RestApi.class);
-			    b = restApi.loginUser(user);
-			    Log.i("bool", ""+b);
+			    u = restApi.loginUser(user);
+			    //Log.i("bool", ""+b);
 	    	} catch(Exception e) {
 	    		
 	    	}
-		    return b;
+		    return u;
 	    }
 
-	    protected void onPostExecute(Boolean success) {
+	    protected void onPostExecute(User u) {
 	    	progDialog.dismiss();
-	        if(success) {
-	        	UserName.setUser(user);
-	        	callingActivity.modifyUserSuccess(ModifyUserMethods.LOGIN, user);
+	        if(u != null) {
+	        	u.setPassword(user.getPassword());
+	        	UserName.setUser(u);
+	        	callingActivity.modifyUserSuccess(ModifyUserMethods.LOGIN, u);
 	        } else {
-	        	callingActivity.modifyUserFailure(ModifyUserMethods.LOGIN, user);
+	        	callingActivity.modifyUserFailure(ModifyUserMethods.LOGIN, u);
 	        }
 	    }
 	}
