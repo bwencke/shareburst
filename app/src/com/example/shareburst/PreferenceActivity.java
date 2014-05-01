@@ -50,7 +50,6 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 	RectangleView rvYellow[];
 	RectangleView rvOrange[];
 	RectangleView rvPink[];
-	Boolean noCurrentPrefs = true;
 	User currUser;
 	Preferences savePrefs;
 	
@@ -183,14 +182,8 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 		rvGray[0].setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1));
 		rvGray[0].setColor(colorGray);
 		colGray.addView(rvGray[0]);
-		
-		
-		if (noCurrentPrefs){
-			clear();
-		}
-		else {
-			loadSaved();
-		}
+
+		new GetUser(PreferenceActivity.this, this, UserName.getUserName(getApplicationContext())).execute();
 		
 		cols.addView(colGray);
 		cols.addView(colDumbEmptySpace);
@@ -303,14 +296,23 @@ public class PreferenceActivity extends Activity implements ModifyUser {
     };
     
     public void loadSaved(){
-    	//If it has data get it from the server, store in colorPrefs
-    	//Or just load the zeros? Anyway TBD
-    	colorSwitcher(rvRed, colorRed, colorPrefs[0]);
-    	colorSwitcher(rvYellow, colorYellow, colorPrefs[1]);
-    	colorSwitcher(rvOrange, colorOrange, colorPrefs[2]);
-    	colorSwitcher(rvPink, colorPink, colorPrefs[3]);
-    	graysRem = 0; //GraysRem must be zero if you are to save preferences
-    	colorSwitcher(rvGray, colorGray, graysRem);
+    	//Loads your current values on startup
+    	if (savePrefs.getOrange() == 0 && savePrefs.getPink() == 0 &&
+    		savePrefs.getRed() == 0 && savePrefs.getYellow() == 0){
+    		clear();
+    	}
+    	else {
+    		colorPrefs[0] = savePrefs.getRed();
+    		colorPrefs[1] = savePrefs.getYellow();
+    		colorPrefs[2] = savePrefs.getOrange();
+    		colorPrefs[3] = savePrefs.getPink();
+    		colorSwitcher(rvRed, colorRed, colorPrefs[0]);
+    		colorSwitcher(rvYellow, colorYellow, colorPrefs[1]);
+    		colorSwitcher(rvOrange, colorOrange, colorPrefs[2]);
+    		colorSwitcher(rvPink, colorPink, colorPrefs[3]);
+    		graysRem = 0; //GraysRem must be zero if you are to save preferences
+    		colorSwitcher(rvGray, colorGray, graysRem);
+    	}
     }
     
     public void colorSwitcher(RectangleView array[], int c, int lev){
@@ -353,7 +355,10 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 				savePrefs.setYellow(colorPrefs[1]);
 				savePrefs.setOrange(colorPrefs[2]);
 				savePrefs.setPink(colorPrefs[3]);
-				new GetUser(PreferenceActivity.this, this, UserName.getUserName(getApplicationContext())).execute();
+				//new GetUser(PreferenceActivity.this, this, UserName.getUserName(getApplicationContext())).execute();
+				currUser.setPreferences(savePrefs);
+				currUser.setPassword("pass");
+				new PutUser(PreferenceActivity.this, this, currUser).execute();
 			}
             return true;
         case R.id.action_discard:
@@ -419,10 +424,8 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 		switch (method){
 		case GET:
 			currUser = (User) user;
-			Log.i("Legit?", UserName.getUserName(this) + " " + currUser.getFirstName());
-			currUser.setPreferences(savePrefs);
-			currUser.setPassword("pass");
-			new PutUser(PreferenceActivity.this, this, currUser).execute();
+			savePrefs = currUser.getPreferences();
+			loadSaved();
 			break;
 		case PUT:
 		default:

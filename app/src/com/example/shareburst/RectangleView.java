@@ -3,6 +3,7 @@ package com.example.shareburst;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
@@ -26,7 +27,7 @@ public class RectangleView extends View {
     	//Resources res = getResources();
     	//mDrawable = (ShapeDrawable) res.getDrawable(R.drawable.rectangle_red);
     	mDrawable = new ShapeDrawable(new RectShape());
-    	mDrawable.getPaint().setColor(0xff74AC23);
+    	mDrawable.getPaint().setColor(Color.rgb(223, 224, 224));
     	mDrawable.setBounds(x, y, x + width, y + height);
     }
     
