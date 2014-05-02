@@ -21,6 +21,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -260,20 +261,26 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 			pink = (double) getArguments().getInt(ARG_PINK);
 			orange = (double) getArguments().getInt(ARG_ORANGE);
 			double total = red + yellow + pink + orange;
-			double multiplier = 600.0;
+			double multiplier = 400.0;
+			
+			int redpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (multiplier*red/total), getResources().getDisplayMetrics());
+			int yellowpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (multiplier*yellow/total), getResources().getDisplayMetrics());
+			int orangepx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (multiplier*orange/total), getResources().getDisplayMetrics());
+			int pinkpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (multiplier*pink/total), getResources().getDisplayMetrics());
+			
 			
 			View redBlock = (View) rootView.findViewById(R.id.red_block);
-			redBlock.getLayoutParams().height = (int) (multiplier*red/total);
+			redBlock.getLayoutParams().height = redpx;   //(int) (multiplier*red/total);
 			//Log.i("Red Height", redBlock.getLayoutParams().height + " " + red + " " + red/total);
 			
 			View yellowBlock = (View) rootView.findViewById(R.id.yellow_block);
-			yellowBlock.getLayoutParams().height = (int) (multiplier*yellow/total);
+			yellowBlock.getLayoutParams().height = yellowpx;   //(int) (multiplier*yellow/total);
 			
 			View orangeBlock = (View) rootView.findViewById(R.id.orange_block);
-			orangeBlock.getLayoutParams().height = (int) (multiplier*orange/total);
+			orangeBlock.getLayoutParams().height = orangepx;   //(int) (multiplier*orange/total);
 			
 			View pinkBlock = (View) rootView.findViewById(R.id.pink_block);
-			pinkBlock.getLayoutParams().height = (int) (multiplier*pink/total);
+			pinkBlock.getLayoutParams().height = pinkpx;   //(int) (multiplier*pink/total);
 			
 			TextView redText = (TextView) rootView.findViewById(R.id.red_num);
 			redText.setText((int) red + "");
