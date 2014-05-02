@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -214,10 +215,10 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 		private static final String ARG_PINK = "num_pink";
 		private static final String ARG_ORANGE = "num_orange";
 		
-		private int red;
-		private int yellow;
-		private int pink;
-		private int orange;
+		private double red;
+		private double yellow;
+		private double pink;
+		private double orange;
 
 		/**
 		 * Returns a new instance of this fragment for the given section number.
@@ -241,13 +242,46 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 				Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_group,
 					container, false);
-			TextView textView = (TextView) rootView
+			
+			red = (double) getArguments().getInt(ARG_RED);
+			yellow = (double) getArguments().getInt(ARG_YELLOW);
+			pink = (double) getArguments().getInt(ARG_PINK);
+			orange = (double) getArguments().getInt(ARG_ORANGE);
+			double total = red + yellow + pink + orange;
+			double multiplier = 600.0;
+			
+			View redBlock = (View) rootView.findViewById(R.id.red_block);
+			redBlock.getLayoutParams().height = (int) (multiplier*red/total);
+			//Log.i("Red Height", redBlock.getLayoutParams().height + " " + red + " " + red/total);
+			
+			View yellowBlock = (View) rootView.findViewById(R.id.yellow_block);
+			yellowBlock.getLayoutParams().height = (int) (multiplier*yellow/total);
+			
+			View orangeBlock = (View) rootView.findViewById(R.id.orange_block);
+			orangeBlock.getLayoutParams().height = (int) (multiplier*orange/total);
+			
+			View pinkBlock = (View) rootView.findViewById(R.id.pink_block);
+			pinkBlock.getLayoutParams().height = (int) (multiplier*pink/total);
+			
+			TextView redText = (TextView) rootView.findViewById(R.id.red_num);
+			redText.setText((int) red + "");
+			
+			TextView yellowText = (TextView) rootView.findViewById(R.id.yellow_num);
+			yellowText.setText((int) yellow + "");
+			
+			TextView orangeText = (TextView) rootView.findViewById(R.id.orange_num);
+			orangeText.setText((int) orange + "");
+			
+			TextView pinkText = (TextView) rootView.findViewById(R.id.pink_num);
+			pinkText.setText((int) pink + "");
+			
+			/*TextView textView = (TextView) rootView
 					.findViewById(R.id.section_label);
 			red = getArguments().getInt(ARG_RED);
 			yellow = getArguments().getInt(ARG_YELLOW);
 			pink = getArguments().getInt(ARG_PINK);
 			orange = getArguments().getInt(ARG_ORANGE);
-			textView.setText("Red: " + red + "\nYellow: " + yellow + "\nPink: " + pink + "\nOrange: " + orange);
+			textView.setText("Red: " + red + "\nYellow: " + yellow + "\nPink: " + pink + "\nOrange: " + orange);*/
 			return rootView;
 		}
 	}

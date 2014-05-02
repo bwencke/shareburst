@@ -445,7 +445,7 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 	@Override
 	public void modifyUserFailure(ModifyUserMethods method, Object user) {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), "Clickin", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), "Processing, please press again", Toast.LENGTH_SHORT).show();
 		Log.i("Yo", "Failed");
 		
 	}

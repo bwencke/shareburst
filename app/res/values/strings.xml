@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Best of Burst Worlds</string>
+    <string name="app_name">Shareburst</string>
     <string name="default_greeting">Hello, starburst lover!</string>
     <string name="starburst_fact">Did you know...</string>
     <string name="default_fact">Starburst is rumored to have inspired the pop art movement.</string>
@@ -13,7 +13,7 @@
     <string name="action_refresh">Refresh</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="button_submit">Submit!</string>
-    <string name="title_activity_home">Best of Burst Worlds</string>
+    <string name="title_activity_home">Shareburst</string>
     <string name="title_activity_preference">Preferences</string>
     <string name="set_preferences">Set Preferences</string>
     <string name="create_group">Create Group</string>

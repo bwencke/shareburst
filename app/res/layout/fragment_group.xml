@@ -8,9 +8,194 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.shareburst.GroupActivity$PlaceholderFragment" >
 
+    <LinearLayout
+        android:id="@+id/linearLayoutBoxes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" 
+        android:layout_above="@+id/name">
+        
+        <RelativeLayout
+            android:id="@+id/redPiece"
+        	android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:orientation="horizontal" 
+        	android:layout_weight="0.25"
+        	android:layout_gravity="bottom" >
+        	
+            <View 
+    			android:background="#EA0009"
+    			android:id="@+id/red_bottom"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="8dp"
+    			android:layout_alignParentBottom="true" 
+    			android:layout_marginLeft="5dp"
+    			android:layout_marginRight="5dp"
+    			android:layout_marginTop="5dp" >
+			</View>
+
+        	<View 
+    			android:background="#EA0009"
+    			android:id="@+id/red_block"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="145dp"
+    			android:layout_above="@+id/red_bottom" 
+    			android:layout_marginLeft="5dp"
+    			android:layout_marginRight="5dp" >
+			</View>
+			
+        	<TextView
+        	    android:id="@+id/red_num"
+        		android:text="423"
+        		android:textSize="40sp"
+        		android:textStyle="bold"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:gravity="center_horizontal"
+        		android:layout_above="@+id/red_block">
+    		</TextView>
+    		
+    	</RelativeLayout>
+		
+        <RelativeLayout
+            android:id="@+id/yellowPiece"
+        	android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:orientation="horizontal" 
+        	android:layout_weight="0.25"
+        	android:layout_gravity="bottom" >
+        	
+            <View 
+    			android:background="#EDCC0B"
+    			android:id="@+id/yellow_bottom"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="8dp"
+    			android:layout_alignParentBottom="true" 
+    			android:layout_marginLeft="5dp"
+    			android:layout_marginRight="5dp"
+    			android:layout_marginTop="5dp" >
+			</View>
+
+        	<View 
+    			android:background="#EDCC0B"
+    			android:id="@+id/yellow_block"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="200dp"
+    			android:layout_above="@+id/yellow_bottom" 
+    			android:layout_marginLeft="5dp"
+    			android:layout_marginRight="5dp" >
+			</View>
+			
+        	<TextView
+        	    android:id="@+id/yellow_num"
+        		android:text="5"
+        		android:textSize="40sp"
+        		android:textStyle="bold"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:gravity="center_horizontal"
+        		android:layout_above="@+id/yellow_block">
+    		</TextView>
+    		
+    	</RelativeLayout>
+		
+        <RelativeLayout
+            android:id="@+id/orangePiece"
+        	android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:orientation="horizontal" 
+        	android:layout_weight="0.25"
+        	android:layout_gravity="bottom" >
+        	
+            <View 
+    			android:background="#EB7C0A"
+    			android:id="@+id/orange_bottom"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="8dp"
+    			android:layout_alignParentBottom="true" 
+    			android:layout_marginLeft="5dp"
+    			android:layout_marginRight="5dp"
+    			android:layout_marginTop="5dp" >
+			</View>
+
+        	<View 
+    			android:background="#EB7C0A"
+    			android:id="@+id/orange_block"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="235dp"
+    			android:layout_above="@+id/orange_bottom" 
+    			android:layout_marginLeft="5dp"
+    			android:layout_marginRight="5dp" >
+			</View>
+			
+        	<TextView
+        	    android:id="@+id/orange_num"
+        		android:text="17"
+        		android:textSize="40sp"
+        		android:textStyle="bold"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:gravity="center_horizontal"
+        		android:layout_above="@+id/orange_block">
+    		</TextView>
+    		
+    	</RelativeLayout>
+		
+        <RelativeLayout
+            android:id="@+id/pinkPiece"
+        	android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:orientation="horizontal" 
+        	android:layout_weight="0.25"
+        	android:layout_gravity="bottom" >
+        	
+            <View 
+    			android:background="#FC56BE"
+    			android:id="@+id/pink_bottom"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="8dp"
+    			android:layout_alignParentBottom="true" 
+    			android:layout_marginLeft="5dp"
+    			android:layout_marginRight="5dp"
+    			android:layout_marginTop="5dp" >
+			</View>
+
+        	<View 
+    			android:background="#FC56BE"
+    			android:id="@+id/pink_block"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="145dp"
+    			android:layout_above="@+id/pink_bottom"
+    			android:layout_marginLeft="5dp"
+    			android:layout_marginRight="5dp" >
+			</View>
+			
+        	<TextView
+        	    android:id="@+id/pink_num"
+        		android:text="38"
+        		android:textSize="40sp"
+        		android:textStyle="bold"
+        		android:layout_width="match_parent"
+        		android:layout_height="wrap_content"
+        		android:gravity="center_horizontal"
+        		android:layout_above="@+id/pink_block">
+    		</TextView>
+    		
+    	</RelativeLayout>
+        
+    </LinearLayout>
+    
     <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/name"
+        android:text="Joe Koncel"
+        android:textSize="35sp"
+        android:fontFamily="sans-serif-light"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+    	android:layout_alignParentBottom="true">
+    </TextView>
 
 </RelativeLayout>
