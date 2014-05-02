@@ -3,6 +3,7 @@ package com.example.rest;
 import java.util.ArrayList;
 
 import retrofit.http.Body;
+import retrofit.http.DELETE;
 import retrofit.http.GET;
 import retrofit.http.PUT;
 import retrofit.http.Path;
@@ -40,5 +41,10 @@ public interface RestApi {
     Group putGroup(
     		@Body Group group
     );
-	
+    
+    @DELETE("/groups/{groupID}")
+    Boolean deleteGroup(
+    		@Path("groupID") int groupID
+    );		
+   
 }

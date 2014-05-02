@@ -64,13 +64,14 @@ REST API:
 			"password": "unicornfarts"
 		}
 
-		request: DELETE /users/
-		request body: the userName of the user to be deleted
-		response: null
+		request: POST /users/
+		request body: the userName and password of the user to be deleted
+		response: true or false
 
 		A REST REQUEST BODY FOR A USER SHOULD LOOK LIKE:
 		{
-			"userName": "bwencke"
+			"userName": "bwencke",
+			"password": "passypass"
 		}
 
 	GROUPS: Used to group users and assign Starbursts.
@@ -139,14 +140,8 @@ REST API:
 			]
 		}
 		
-		request: DELETE /groups/
-		request body: the group to delete
-		response body: null
-		
-		A REST REQUEST BODY FOR A GROUP SHOULD LOOK LIKE:
-		{
-			"groupID": 27580
-		}
+		request: DELETE /groups/{groupID}
+		response body: true or false
 
 AUTHENTICATION:
 
