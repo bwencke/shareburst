@@ -22,6 +22,7 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-light"
         android:textSize="35sp"
+        android:singleLine="true"
         android:text="" />
 
 </RelativeLayout>

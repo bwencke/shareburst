@@ -6,6 +6,7 @@ import java.util.Locale;
 import com.example.data.UserName;
 import com.example.rest.Assignments;
 import com.example.rest.Group;
+import com.example.rest.ModifyGroup;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
 import com.example.rest.ModifyGroup.ListGroup;
@@ -28,7 +29,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GroupActivity extends Activity implements ActionBar.TabListener, ModifyUser {
+public class GroupActivity extends Activity implements ActionBar.TabListener, ModifyUser, ModifyGroup {
 
 	int pos;
 	Group group;
@@ -62,7 +63,12 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 		} else {
 			proceed = true;
 		}
-		
+		if(proceed) {
+			setup();
+		}
+	}
+	
+	public void setup() {
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -109,6 +115,9 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 	    	intent.putExtra("groupID", group.getGroupID());
 	    	intent.putExtra("returnToGroupActivity", true);
 	    	startActivityForResult(intent, 1);
+	    	return true;
+	    case R.id.action_discard:
+	    	new DeleteGroup(GroupActivity.this, this, group.getGroupID()).execute();
 	    	return true;
         case R.id.action_edit_account:
         	Toast.makeText(getApplicationContext(), "edit account", Toast.LENGTH_LONG).show();
@@ -255,8 +264,14 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 			
 			TextView name = (TextView) rootView
 					.findViewById(R.id.name);
-			for(User u : UserName.getUsers()) {
-				name.setText(u.getName());
+			if(UserName.getUserName(getActivity()).equals(username)) {
+				name.setText("Me");
+			} else {
+				for(User u : UserName.getUsers()) {
+					if(u != null && u.getUserName() != null && u.getUserName().equals(username)) {
+						name.setText(u.getName());
+					}
+				}
 			}
 			
 			return rootView;
@@ -271,11 +286,24 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 		ArrayList<User> listOfUsers =  (ArrayList<User>) user;
 		UserName.setUsers(listOfUsers);
 		proceed = true;
-		loadTabs();
+		setup();
 	}
 
 	@Override
 	public void modifyUserFailure(ModifyUserMethods method, Object user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modifyGroupSuccess(ModifyGroupMethods method, Object group) {
+		// TODO Auto-generated method stub
+		UserName.getGroups().remove(this.group);
+		finish();
+	}
+
+	@Override
+	public void modifyGroupFailure(ModifyGroupMethods method, Object group) {
 		// TODO Auto-generated method stub
 		
 	}
