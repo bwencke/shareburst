@@ -261,7 +261,7 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 			pink = (double) getArguments().getInt(ARG_PINK);
 			orange = (double) getArguments().getInt(ARG_ORANGE);
 			double total = red + yellow + pink + orange;
-			double multiplier = 400.0;
+			double multiplier = 350.0;
 			
 			int redpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (multiplier*red/total), getResources().getDisplayMetrics());
 			int yellowpx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, (int) (multiplier*yellow/total), getResources().getDisplayMetrics());
@@ -271,7 +271,6 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 			
 			View redBlock = (View) rootView.findViewById(R.id.red_block);
 			redBlock.getLayoutParams().height = redpx;   //(int) (multiplier*red/total);
-			//Log.i("Red Height", redBlock.getLayoutParams().height + " " + red + " " + red/total);
 			
 			View yellowBlock = (View) rootView.findViewById(R.id.yellow_block);
 			yellowBlock.getLayoutParams().height = yellowpx;   //(int) (multiplier*yellow/total);
