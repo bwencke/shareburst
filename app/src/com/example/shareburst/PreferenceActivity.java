@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -187,8 +188,6 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 		
 		currUser = UserName.getUser();
 		savePrefs = currUser.getPreferences();
-		Log.i("PREFS", savePrefs.getOrange() + " " + savePrefs.getPink());
-		Log.i("Password5", UserName.getUser().getPassword());
 		loadSaved();
 		
 		cols.addView(colGray);
@@ -356,7 +355,7 @@ public class PreferenceActivity extends Activity implements ModifyUser {
         	if (graysRem > 0){
 				Toast.makeText(getApplicationContext(), "You have " + graysRem + " more Starburst(s) to distribute!", Toast.LENGTH_SHORT).show();
 			} else {
-				Log.i("What", graysRem + " " + colorPrefs[2]);
+				//Log.i("What", graysRem + " " + colorPrefs[2]);
 				//savePrefs = new Preferences();
 				savePrefs.setRed(colorPrefs[0]);
 				savePrefs.setYellow(colorPrefs[1]);
@@ -365,7 +364,7 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 				//new GetUser(PreferenceActivity.this, this, UserName.getUserName(getApplicationContext())).execute();
 				//currUser.setPreferences(savePrefs);
 				//Log.i("Password", UserName.getUser().getPassword());
-				Log.i("Password6", UserName.getUser().getPassword());
+				//Log.i("Password6", UserName.getUser().getPassword());
 				//currUser.setPassword(UserName.getUser().getPassword());
 				new PutUser(PreferenceActivity.this, this, currUser).execute();
 			}
@@ -437,6 +436,8 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 			loadSaved();
 			break;
 		case PUT:
+			Intent returnIntent = new Intent();
+			setResult(RESULT_OK,returnIntent);     
 		default:
 			finish();
 		}

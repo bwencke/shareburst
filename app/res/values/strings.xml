@@ -8,6 +8,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="what_to_do">What would you like to do?</string>
     <string name="action_settings">Settings</string>
+    <string name="action_set_preferences">Set Preferences</string>
     <string name="action_logout">Logout</string>
     <string name="action_edit">Edit</string>
     <string name="action_refresh">Refresh</string>

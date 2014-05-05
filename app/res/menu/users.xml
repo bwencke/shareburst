@@ -10,6 +10,11 @@
         android:title="@string/action_refresh"/>
     
     <item
+        android:id="@+id/action_set_preferences"
+        android:showAsAction="never"
+        android:title="@string/action_set_preferences"/>
+    
+    <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:showAsAction="never"

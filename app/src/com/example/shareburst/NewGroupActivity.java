@@ -62,7 +62,6 @@ public class NewGroupActivity extends Activity {
 		ArrayList<User> users;
 		ArrayList<User> selectedUsers;
 		UserAdapter userAdapter;
-		UserAdapterSpinner userAdapterSpinner;
 		
 		public PlaceholderFragment() {
 		}
@@ -245,7 +244,14 @@ public class NewGroupActivity extends Activity {
 		@Override
 		public void modifyGroupSuccess(ModifyGroupMethods method, Object group) {
 			// TODO Auto-generated method stub
-			UserName.getGroups().add((Group) group);
+			Group g = (Group) group;
+			if(groupID != 0) {
+				UserName.getGroups().remove(g);
+			}
+			UserName.getGroups().add(g);
+			Intent intent = new Intent(getActivity(), GroupActivity.class);
+			intent.putExtra("pos", UserName.getGroups().size()-1);
+			startActivity(intent);
 			getActivity().finish();
 		}
 

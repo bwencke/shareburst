@@ -185,7 +185,7 @@ public class LoginActivity extends Activity implements ModifyUser {
 		mAuthTask = null;
 
 		//UserName.getUser().setPassword(mPassword);
-		Intent intent = new Intent(this, HomeActivity.class);
+		Intent intent = new Intent(this, GroupsActivity.class);
 		startActivity(intent);
 		finish();
 	}

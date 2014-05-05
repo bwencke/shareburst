@@ -211,6 +211,8 @@ public interface ModifyUser {
 	        if(u != null) {
 	        	u.setPassword(user.getPassword());
 	        	UserName.setUser(u);
+	        	UserName.setUserName(context, u.getUserName());
+	        	UserName.setPassword(context, u.getPassword());
 	        	callingActivity.modifyUserSuccess(ModifyUserMethods.LOGIN, u);
 	        } else {
 	        	callingActivity.modifyUserFailure(ModifyUserMethods.LOGIN, u);

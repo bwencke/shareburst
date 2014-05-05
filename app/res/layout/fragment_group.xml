@@ -46,6 +46,7 @@
 			
         	<TextView
         	    android:id="@+id/red_num"
+        	    android:textColor="#EA0009"
         		android:text="423"
         		android:textSize="40sp"
         		android:textStyle="bold"
@@ -88,6 +89,7 @@
 			
         	<TextView
         	    android:id="@+id/yellow_num"
+        	    android:textColor="#EDCC0B"
         		android:text="5"
         		android:textSize="40sp"
         		android:textStyle="bold"
@@ -130,6 +132,7 @@
 			
         	<TextView
         	    android:id="@+id/orange_num"
+        	    android:textColor="#EB7C0A"
         		android:text="17"
         		android:textSize="40sp"
         		android:textStyle="bold"
@@ -172,6 +175,7 @@
 			
         	<TextView
         	    android:id="@+id/pink_num"
+        	    android:textColor="#FC56BE"
         		android:text="38"
         		android:textSize="40sp"
         		android:textStyle="bold"

@@ -16,7 +16,7 @@ import android.content.Context;
  */
 public class UserName {
     private static final String USERNAME = "USERNAME";
-    private static String username = null;
+    private static final String PASSWORD = "PASSWORD";
     public static User user = new User();
     public static ArrayList<User> users = null;
     public static ArrayList<Group> groups = null;
@@ -48,6 +48,40 @@ public class UserName {
      * @param code the Company Code as a String or null to generate a new code
      * @return the Company Code as a String
      */
+    public static String setPassword(Context context, String password) {
+    	File passwordFile = new File(context.getFilesDir(), PASSWORD);
+    	try {
+			user.setPassword(writeUserNameFile(passwordFile, password));
+			return user.getPassword();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	user.setPassword(null);
+    	return null;
+    }
+    
+    public static String getPassword(Context context) {
+    	if(user.getPassword() == null) {
+    		// need to load the username from the file
+	    	File userPassword = new File(context.getFilesDir(), PASSWORD);
+	    	try {
+	    		user.setPassword(readUserNameFile(userPassword));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	return user.getPassword();
+    }
+    
+    /**
+     * Sets the Company Code to the code provided or generates a new code if code == null
+     * 
+     * @param context where it was called from (getApplicationContext() or getActivity())
+     * @param code the Company Code as a String or null to generate a new code
+     * @return the Company Code as a String
+     */
     public static String setUserName(Context context, String username) {
     	File userNameFile = new File(context.getFilesDir(), USERNAME);
     	try {
@@ -70,15 +104,39 @@ public class UserName {
     	File userNameFile = new File(context.getFilesDir(), USERNAME);
     	try {
 			deleteUserNameFile(userNameFile);
+			deletePasswordFile(userNameFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	user.setUserName(null);
+    	user = new User();
     	users = null;
     	groups = null;
     }
 
+    private static String readPasswordFile(File passwordFile) throws IOException {
+        RandomAccessFile f = new RandomAccessFile(passwordFile, "r");
+        byte[] bytes = new byte[(int) f.length()];
+        f.readFully(bytes);
+        f.close();
+        return new String(bytes);
+    }
+    
+    private static void deletePasswordFile(File passwordFile) throws IOException {
+    	passwordFile.delete();
+    }
+
+    private static String writePassowrdFile(File passwordFile, String password) throws IOException {
+        FileOutputStream out = new FileOutputStream(passwordFile);
+        if(password == null) {
+        	out.close();
+        	return null;
+        }
+        out.write(password.getBytes());
+        out.close();
+        return password;
+    }
+    
     private static String readUserNameFile(File userNameFile) throws IOException {
         RandomAccessFile f = new RandomAccessFile(userNameFile, "r");
         byte[] bytes = new byte[(int) f.length()];
@@ -117,7 +175,7 @@ public class UserName {
 	public static void setUsers(ArrayList<User> users) {
 		for(int i = 0; i < users.size(); i++) {
 			User u = users.get(i);
-			if(u.getUserName() == null || u.getUserName().equals(username)) {
+			if(u.getUserName() == null || u.getUserName().equals(user.getUserName())) {
 				users.remove(i);
 				break;
 			}

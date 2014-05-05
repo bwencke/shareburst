@@ -45,4 +45,16 @@ public class Group {
 	public void setGroupID(int groupID) {
 		this.groupID = groupID;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		if(o == null) {
+			return false;
+		}
+		if(((Group) o).getGroupID() == this.getGroupID()) {
+			return true;
+		}
+		return false;
+	}
 }

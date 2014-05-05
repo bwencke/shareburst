@@ -116,13 +116,15 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 	    	Intent intent = new Intent(getApplicationContext(), NewGroupActivity.class);
 	    	intent.putExtra("groupID", group.getGroupID());
 	    	intent.putExtra("returnToGroupActivity", true);
-	    	startActivityForResult(intent, 1);
+	    	startActivity(intent);
+	    	finish();
 	    	return true;
 	    case R.id.action_discard:
 	    	new DeleteGroup(GroupActivity.this, this, group.getGroupID()).execute();
 	    	return true;
-        case R.id.action_edit_account:
-        	Toast.makeText(getApplicationContext(), "edit account", Toast.LENGTH_LONG).show();
+        case R.id.action_set_preferences:
+        	Intent prefsIntent = new Intent(getApplicationContext(), PreferenceActivity.class);
+        	startActivityForResult(prefsIntent, RESULT_OK);
             return true;
         case R.id.action_logout:
         	UserName.clearUserName(getApplicationContext());
@@ -338,8 +340,18 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 	@Override
 	public void modifyGroupSuccess(ModifyGroupMethods method, Object group) {
 		// TODO Auto-generated method stub
-		UserName.getGroups().remove(this.group);
-		finish();
+		switch(method) {
+		case DELETE:
+			UserName.getGroups().remove(this.group);
+			finish();
+			break;
+		case LIST:
+			break;
+		case PUT:
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override

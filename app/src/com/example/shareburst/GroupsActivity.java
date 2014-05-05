@@ -177,8 +177,9 @@ public class GroupsActivity extends Activity {
 		    case R.id.action_refresh:
 		    	new ListGroup(getActivity(), this, UserName.getUserName(getActivity())).execute();
 		    	return true;
-	        case R.id.action_edit_account:
-	        	Toast.makeText(getActivity(), "edit account", Toast.LENGTH_LONG).show();
+	        case R.id.action_set_preferences:
+	        	Intent prefsIntent = new Intent(getActivity(), PreferenceActivity.class);
+	        	startActivityForResult(prefsIntent, RESULT_OK);
 	            return true;
 	        case R.id.action_logout:
 	        	UserName.clearUserName(getActivity());
@@ -189,6 +190,16 @@ public class GroupsActivity extends Activity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 		    }
+		}
+		
+		@Override
+		public void onActivityResult(int requestCode, int resultCode, Intent data) {
+			// TODO Auto-generated method stub
+			super.onActivityResult(requestCode, resultCode, data);
+			
+			if(resultCode == RESULT_OK) {
+				new ListGroup(getActivity(), this, UserName.getUserName(getActivity())).execute();
+			}
 		}
 		
 		@SuppressWarnings("unchecked")

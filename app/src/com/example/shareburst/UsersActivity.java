@@ -128,6 +128,9 @@ public class UsersActivity extends Activity {
 		    case R.id.action_refresh:
 		    	new ListUser(getActivity(), this).execute();
 		    	return true;
+		    case R.id.action_set_preferences:
+		    	Intent prefsIntent = new Intent(getActivity(), PreferenceActivity.class);
+	        	startActivity(prefsIntent);
 		    case R.id.action_logout:
 		    	UserName.clearUserName(getActivity());
 	    		Intent intent = new Intent(getActivity(), LoginActivity.class);
