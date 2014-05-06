@@ -5,13 +5,11 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import com.example.data.UserName;
-import com.example.rest.ModifyGroup.ModifyGroupMethods;
 
 import retrofit.RestAdapter;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 public interface ModifyUser {
 

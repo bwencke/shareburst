@@ -6,7 +6,6 @@ import retrofit.RestAdapter;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 public interface ModifyGroup {
 

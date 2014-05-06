@@ -1,7 +1,5 @@
 package com.shareburst.preference;
 
-import java.util.concurrent.TimeUnit;
-
 import com.example.data.UserName;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
@@ -9,20 +7,13 @@ import com.example.rest.Preferences;
 import com.shareburst.R;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,14 +22,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
 
 public class PreferenceActivity extends Activity implements ModifyUser {
 	
@@ -63,6 +50,7 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 	int colorPink = Color.rgb(252, 86, 190);
 	
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -1,10 +1,8 @@
 package com.shareburst.preference;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.view.View;
@@ -14,6 +12,10 @@ public class RectangleView extends View {
 	private int level;
 	private int color; //Gray = 0, Red = 1; Yellow = 2; Orange = 3; Pink = 4;
 
+	public RectangleView(Context context) {
+		super(context);
+	}
+	
     public RectangleView(Context context, int level, int color) {
     	super(context);
     	this.level = level;

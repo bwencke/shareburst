@@ -12,7 +12,7 @@ import com.example.rest.User;
 import android.content.Context;
 
 /**
- * Generates and maintains the Company Code
+ * Data stored locally on the device
  */
 public class UserName {
     private static final String USERNAME = "USERNAME";
@@ -20,13 +20,7 @@ public class UserName {
     public static User user = new User();
     public static ArrayList<User> users = null;
     public static ArrayList<Group> groups = null;
-    
-    /**
-     * Gets the Company Code
-     * 
-     * @param context where it was called from (getApplicationContext() or getActivity())
-     * @return the Company Code as a String
-     */
+
     public static String getUserName(Context context) {
     	if(user.getUserName() == null) {
     		// need to load the username from the file
@@ -41,17 +35,10 @@ public class UserName {
     	return user.getUserName();
     }
     
-    /**
-     * Sets the Company Code to the code provided or generates a new code if code == null
-     * 
-     * @param context where it was called from (getApplicationContext() or getActivity())
-     * @param code the Company Code as a String or null to generate a new code
-     * @return the Company Code as a String
-     */
     public static String setPassword(Context context, String password) {
     	File passwordFile = new File(context.getFilesDir(), PASSWORD);
     	try {
-			user.setPassword(writeUserNameFile(passwordFile, password));
+			user.setPassword(writePasswordFile(passwordFile, password));
 			return user.getPassword();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -66,7 +53,7 @@ public class UserName {
     		// need to load the username from the file
 	    	File userPassword = new File(context.getFilesDir(), PASSWORD);
 	    	try {
-	    		user.setPassword(readUserNameFile(userPassword));
+	    		user.setPassword(readPasswordFile(userPassword));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -74,14 +61,7 @@ public class UserName {
     	}
     	return user.getPassword();
     }
-    
-    /**
-     * Sets the Company Code to the code provided or generates a new code if code == null
-     * 
-     * @param context where it was called from (getApplicationContext() or getActivity())
-     * @param code the Company Code as a String or null to generate a new code
-     * @return the Company Code as a String
-     */
+
     public static String setUserName(Context context, String username) {
     	File userNameFile = new File(context.getFilesDir(), USERNAME);
     	try {
@@ -95,11 +75,6 @@ public class UserName {
     	return null;
     }
     
-    /**
-     * Erases the Company Code from the device
-     * 
-     * @param context where it was called from (getApplicationContext() or getActivity())
-     */
     public static void clearUserName(Context context) {
     	File userNameFile = new File(context.getFilesDir(), USERNAME);
     	try {
@@ -126,7 +101,7 @@ public class UserName {
     	passwordFile.delete();
     }
 
-    private static String writePassowrdFile(File passwordFile, String password) throws IOException {
+    private static String writePasswordFile(File passwordFile, String password) throws IOException {
         FileOutputStream out = new FileOutputStream(passwordFile);
         if(password == null) {
         	out.close();

@@ -2,9 +2,9 @@ package com.shareburst.user;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +16,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.data.UserName;
-import com.example.rest.Assignments;
 import com.example.rest.User;
 import com.shareburst.R;
 
 /**
  * An Adapter that takes Device objects and maps them to a ListView
  */
+@SuppressLint("DefaultLocale")
 public class UserAdapter extends ArrayAdapter<User> {
 
 	private ArrayList<User> users;
@@ -96,11 +96,13 @@ public class UserAdapter extends ArrayAdapter<User> {
         return users.get(position);
     }
     
-    @Override
+    @SuppressLint("DefaultLocale")
+	@Override
 	public Filter getFilter() {
 		// TODO Auto-generated method stub
 		Filter filter = new Filter() {
 
+			@SuppressLint("DefaultLocale")
 			@Override
 			protected FilterResults performFiltering(CharSequence constraint) {
 				// TODO Auto-generated method stub

@@ -24,7 +24,7 @@
         	android:layout_gravity="bottom" >
         	
             <View 
-    			android:background="#EA0009"
+    			android:background="@color/red"
     			android:id="@+id/red_bottom"
     			android:layout_width="wrap_content" 
     			android:layout_height="8dp"
@@ -35,7 +35,7 @@
 			</View>
 
         	<View 
-    			android:background="#EA0009"
+    			android:background="@color/red"
     			android:id="@+id/red_block"
     			android:layout_width="wrap_content" 
     			android:layout_height="145dp"
@@ -46,7 +46,7 @@
 			
         	<TextView
         	    android:id="@+id/red_num"
-        	    android:textColor="#EA0009"
+        	    android:textColor="@color/red"
         		android:text="423"
         		android:textSize="40sp"
         		android:textStyle="bold"
@@ -67,7 +67,7 @@
         	android:layout_gravity="bottom" >
         	
             <View 
-    			android:background="#EDCC0B"
+    			android:background="@color/yellow"
     			android:id="@+id/yellow_bottom"
     			android:layout_width="wrap_content" 
     			android:layout_height="8dp"
@@ -78,7 +78,7 @@
 			</View>
 
         	<View 
-    			android:background="#EDCC0B"
+    			android:background="@color/yellow"
     			android:id="@+id/yellow_block"
     			android:layout_width="wrap_content" 
     			android:layout_height="200dp"
@@ -89,7 +89,7 @@
 			
         	<TextView
         	    android:id="@+id/yellow_num"
-        	    android:textColor="#EDCC0B"
+        	    android:textColor="@color/yellow"
         		android:text="5"
         		android:textSize="40sp"
         		android:textStyle="bold"
@@ -110,7 +110,7 @@
         	android:layout_gravity="bottom" >
         	
             <View 
-    			android:background="#EB7C0A"
+    			android:background="@color/orange"
     			android:id="@+id/orange_bottom"
     			android:layout_width="wrap_content" 
     			android:layout_height="8dp"
@@ -121,7 +121,7 @@
 			</View>
 
         	<View 
-    			android:background="#EB7C0A"
+    			android:background="@color/orange"
     			android:id="@+id/orange_block"
     			android:layout_width="wrap_content" 
     			android:layout_height="235dp"
@@ -132,7 +132,7 @@
 			
         	<TextView
         	    android:id="@+id/orange_num"
-        	    android:textColor="#EB7C0A"
+        	    android:textColor="@color/orange"
         		android:text="17"
         		android:textSize="40sp"
         		android:textStyle="bold"
@@ -153,7 +153,7 @@
         	android:layout_gravity="bottom" >
         	
             <View 
-    			android:background="#FC56BE"
+    			android:background="@color/pink"
     			android:id="@+id/pink_bottom"
     			android:layout_width="wrap_content" 
     			android:layout_height="8dp"
@@ -164,7 +164,7 @@
 			</View>
 
         	<View 
-    			android:background="#FC56BE"
+    			android:background="@color/pink"
     			android:id="@+id/pink_block"
     			android:layout_width="wrap_content" 
     			android:layout_height="145dp"
@@ -175,7 +175,7 @@
 			
         	<TextView
         	    android:id="@+id/pink_num"
-        	    android:textColor="#FC56BE"
+        	    android:textColor="@color/pink"
         		android:text="38"
         		android:textSize="40sp"
         		android:textStyle="bold"

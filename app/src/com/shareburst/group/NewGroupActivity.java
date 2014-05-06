@@ -8,7 +8,6 @@ import com.example.rest.Group;
 import com.example.rest.ModifyGroup;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
-import com.example.rest.ModifyUser.ListUser;
 import com.shareburst.R;
 import com.shareburst.main.LoginActivity;
 import com.shareburst.user.DeleteUser;
@@ -16,28 +15,20 @@ import com.shareburst.user.UserAdapter;
 import com.shareburst.user.UsersActivity;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnGenericMotionListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
-import android.os.Build;
 
 public class NewGroupActivity extends Activity {
 	

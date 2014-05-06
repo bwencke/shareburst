@@ -10,14 +10,11 @@ import com.shareburst.main.LoginActivity;
 import com.shareburst.preference.PreferenceActivity;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
-import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,7 +26,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.os.Build;
 
 public class UsersActivity extends Activity {
 	
@@ -155,7 +151,7 @@ public class UsersActivity extends Activity {
 		@Override
 		public void modifyUserSuccess(ModifyUserMethods method, Object user) {
 			// TODO Auto-generated method stub
-			String userName = UserName.getUserName(getActivity());
+			UserName.getUserName(getActivity());
 			ArrayList<User> listOfUsers =  (ArrayList<User>) user;
 			UserName.setUsers(listOfUsers);
 			refreshView();

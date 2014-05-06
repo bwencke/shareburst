@@ -1,12 +1,10 @@
 package com.shareburst.main;
 
-import com.example.data.UserName;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
 import com.shareburst.R;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +17,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.os.Build;
 
 public class RegisterActivity extends Activity {
 	

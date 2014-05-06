@@ -1,7 +1,6 @@
 package com.shareburst.group;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import com.example.data.UserName;
 import com.example.rest.Assignments;
@@ -9,7 +8,6 @@ import com.example.rest.Group;
 import com.example.rest.ModifyGroup;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
-import com.example.rest.ModifyGroup.ListGroup;
 import com.shareburst.R;
 import com.shareburst.main.LoginActivity;
 import com.shareburst.preference.PreferenceActivity;
@@ -23,16 +21,13 @@ import android.content.Intent;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class GroupActivity extends Activity implements ActionBar.TabListener, ModifyUser, ModifyGroup {
 
@@ -184,7 +179,6 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			Locale l = Locale.getDefault();
 			String userName = group.getAssignments().get(position).getUserName();
 			if(userName != null) {
 				if(userName.equals(UserName.getUserName(getApplicationContext()))) {
@@ -324,8 +318,7 @@ public class GroupActivity extends Activity implements ActionBar.TabListener, Mo
 
 	@Override
 	public void modifyUserSuccess(ModifyUserMethods method, Object user) {
-		// TODO Auto-generated method stub
-		String userName = UserName.getUserName(getApplicationContext());
+		UserName.getUserName(getApplicationContext());
 		@SuppressWarnings("unchecked")
 		ArrayList<User> listOfUsers =  (ArrayList<User>) user;
 		UserName.setUsers(listOfUsers);

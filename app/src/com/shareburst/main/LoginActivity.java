@@ -1,22 +1,14 @@
 package com.shareburst.main;
 
-import com.example.data.UserName;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
 import com.shareburst.R;
 import com.shareburst.group.GroupsActivity;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;

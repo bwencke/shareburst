@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import com.example.data.UserName;
 import com.example.rest.Group;
 import com.example.rest.ModifyGroup;
-import com.example.rest.ModifyUser.GetUser;
-import com.example.rest.ModifyUser.ListUser;
 import com.shareburst.R;
 import com.shareburst.main.LoginActivity;
 import com.shareburst.preference.PreferenceActivity;
@@ -14,13 +12,10 @@ import com.shareburst.preference.PreferenceActivity;
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
-import android.app.ListFragment;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,7 +27,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
 
 public class GroupsActivity extends Activity {
 
