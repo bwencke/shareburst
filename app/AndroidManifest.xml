@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.shareburst"
+    package="com.shareburst"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Shareburstblue" >
         <activity
-            android:name="com.example.shareburst.MainActivity"
+            android:name="com.shareburst.main.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,46 +26,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.shareburst.ResultActivity"
-            android:label="@string/title_activity_result" >
-        </activity>
-        <activity
-            android:name="com.example.shareburst.LoginActivity"
+            android:name="com.shareburst.main.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name="com.example.shareburst.HomeActivity"
-            android:label="@string/title_activity_home" >
-        </activity>
-        <activity
-            android:name="com.example.shareburst.RegisterActivity"
+            android:name="com.shareburst.main.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:parentActivityName="com.example.shareburst.LoginActivity" >
+            android:parentActivityName="com.shareburst.main.LoginActivity" >
         </activity>
         <activity
-            android:name="com.example.shareburst.PreferenceActivity"
-            android:label="@string/title_activity_preference"
-            android:parentActivityName="com.example.shareburst.HomeActivity" >
+            android:name="com.shareburst.preference.PreferenceActivity"
+            android:label="@string/title_activity_preference" >
         </activity>
         <activity
-            android:name="com.example.shareburst.GroupsActivity"
+            android:name="com.shareburst.group.GroupsActivity"
             android:label="@string/title_activity_groups" >
         </activity>
         <activity
-            android:name="com.example.shareburst.NewGroupActivity"
+            android:name="com.shareburst.group.NewGroupActivity"
             android:label="@string/title_activity_new_group"
-            android:parentActivityName="com.example.shareburst.GroupsActivity" >
+            android:parentActivityName="com.shareburst.group.GroupsActivity" >
         </activity>
         <activity
-            android:name="com.example.shareburst.UsersActivity"
+            android:name="com.shareburst.user.UsersActivity"
             android:label="@string/title_activity_users"
             android:windowSoftInputMode="stateHidden"
-            android:parentActivityName="com.example.shareburst.NewGroupActivity" >
+            android:parentActivityName="com.shareburst.group.NewGroupActivity" >
         </activity>
         <activity
-            android:name="com.example.shareburst.GroupActivity"
+            android:name="com.com.shareburst.group.GroupActivity"
             android:label="@string/title_activity_group"
-            android:parentActivityName="com.example.shareburst.GroupsActivity" >
+            android:parentActivityName="com.shareburst.group.GroupsActivity" >
         </activity>
     </application>
 

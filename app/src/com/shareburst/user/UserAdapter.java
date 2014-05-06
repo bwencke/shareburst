@@ -1,4 +1,4 @@
-package com.example.shareburst;
+package com.shareburst.user;
 
 import java.util.ArrayList;
 
@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.data.UserName;
 import com.example.rest.Assignments;
 import com.example.rest.User;
+import com.shareburst.R;
 
 /**
  * An Adapter that takes Device objects and maps them to a ListView

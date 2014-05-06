@@ -1,4 +1,4 @@
-package com.example.shareburst;
+package com.shareburst.preference;
 
 import java.util.concurrent.TimeUnit;
 
@@ -6,6 +6,7 @@ import com.example.data.UserName;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
 import com.example.rest.Preferences;
+import com.shareburst.R;
 
 import android.app.Activity;
 import android.app.ActionBar;

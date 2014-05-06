@@ -1,4 +1,4 @@
-package com.example.shareburst;
+package com.shareburst.group;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,11 @@ import com.example.rest.ModifyGroup;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
 import com.example.rest.ModifyUser.ListUser;
+import com.shareburst.R;
+import com.shareburst.main.LoginActivity;
+import com.shareburst.user.DeleteUser;
+import com.shareburst.user.UserAdapter;
+import com.shareburst.user.UsersActivity;
 
 import android.app.Activity;
 import android.app.ActionBar;

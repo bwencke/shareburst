@@ -1,4 +1,4 @@
-package com.example.shareburst;
+package com.shareburst.group;
 
 import java.util.ArrayList;
 

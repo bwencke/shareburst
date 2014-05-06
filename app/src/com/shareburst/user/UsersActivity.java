@@ -1,10 +1,13 @@
-package com.example.shareburst;
+package com.shareburst.user;
 
 import java.util.ArrayList;
 
 import com.example.data.UserName;
 import com.example.rest.User;
 import com.example.rest.ModifyUser;
+import com.shareburst.R;
+import com.shareburst.main.LoginActivity;
+import com.shareburst.preference.PreferenceActivity;
 
 import android.app.Activity;
 import android.app.ActionBar;

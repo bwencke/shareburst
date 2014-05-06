@@ -1,4 +1,4 @@
-package com.example.shareburst;
+package com.shareburst.group;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -10,6 +10,9 @@ import com.example.rest.ModifyGroup;
 import com.example.rest.ModifyUser;
 import com.example.rest.User;
 import com.example.rest.ModifyGroup.ListGroup;
+import com.shareburst.R;
+import com.shareburst.main.LoginActivity;
+import com.shareburst.preference.PreferenceActivity;
 
 import android.app.Activity;
 import android.app.ActionBar;

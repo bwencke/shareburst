@@ -1,4 +1,4 @@
-package com.example.shareburst;
+package com.shareburst.group;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,9 @@ import com.example.rest.Group;
 import com.example.rest.ModifyGroup;
 import com.example.rest.ModifyUser.GetUser;
 import com.example.rest.ModifyUser.ListUser;
+import com.shareburst.R;
+import com.shareburst.main.LoginActivity;
+import com.shareburst.preference.PreferenceActivity;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;

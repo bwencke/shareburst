@@ -1,4 +1,4 @@
-package com.example.shareburst;
+package com.shareburst.preference;
 
 import android.content.Context;
 import android.content.res.Resources;
