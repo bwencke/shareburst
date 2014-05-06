@@ -2,41 +2,15 @@
 <resources>
 
     <string name="app_name">Shareburst</string>
-    <string name="default_greeting">Hello, starburst lover!</string>
-    <string name="starburst_fact">Did you know...</string>
-    <string name="default_fact">Starburst is rumored to have inspired the pop art movement.</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="what_to_do">What would you like to do?</string>
+    
     <string name="action_settings">Settings</string>
     <string name="action_set_preferences">Set Preferences</string>
     <string name="action_logout">Logout</string>
     <string name="action_edit">Edit</string>
     <string name="action_refresh">Refresh</string>
-    <string name="title_activity_result">ResultActivity</string>
-    <string name="button_submit">Submit!</string>
-    <string name="title_activity_home">Shareburst</string>
-    <string name="title_activity_preference">Preferences</string>
     <string name="set_preferences">Set Preferences</string>
     <string name="create_group">Create Group</string>
     <string name="action_accept">Accept</string>
     <string name="action_discard">Clear</string>
-
-    <string-array name="starburstFacts">
-        <item>Starburst is rumored to have inspired the pop art movement.</item>
-        <item>Starburst\'s slogan is \"Starburst: a pack of contradictions.\"</item>
-        <item>In the US, the Starburst\'s slogan is \"unexplainably juicy.\"</item>
-        <item>The original flavors were strawberry, orange, lemon, and lime. Lime was later replaced with cherry.</item>
-        <item>In the UK, the candies are vegetarian. In the US, they contain gelatin.</item>
-        <item>Starbursts were originally called Opal Fruits.</item>
-        <item>Starbursts were created in 1971 in the United Kingdom.</item>
-        <item>Starbursts contain real fruit juice and are a source of vitamin C.</item>
-        <item>Packs come in flavors such as Original, Tropical, Sour and Favereds.</item>
-        <item>It would take about 30 million packs of Starbursts to go from New York to Los Angeles.</item>
-    </string-array>
-
-    <string name="title_activity_group">Group Information</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
 
 </resources>

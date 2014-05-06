@@ -5,4 +5,19 @@
     
     <string name="action_new">New Group</string>
     <string name="action_edit_account">Edit Account</string>
+    
+    <string name="starburst_fact">Did you know...</string>
+    <string name="default_fact">Starburst is rumored to have inspired the pop art movement.</string>
+    <string-array name="starburstFacts">
+        <item>Starburst is rumored to have inspired the pop art movement.</item>
+        <item>Starburst\'s slogan is \"Starburst: a pack of contradictions.\"</item>
+        <item>In the US, the Starburst\'s slogan is \"unexplainably juicy.\"</item>
+        <item>The original flavors were strawberry, orange, lemon, and lime. Lime was later replaced with cherry.</item>
+        <item>In the UK, the candies are vegetarian. In the US, they contain gelatin.</item>
+        <item>Starbursts were originally called Opal Fruits.</item>
+        <item>Starbursts were created in 1971 in the United Kingdom.</item>
+        <item>Starbursts contain real fruit juice and are a source of vitamin C.</item>
+        <item>Packs come in flavors such as Original, Tropical, Sour and Favereds.</item>
+        <item>It would take about 30 million packs of Starbursts to go from New York to Los Angeles.</item>
+    </string-array>
 </resources>
