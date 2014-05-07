@@ -5,6 +5,7 @@ import com.example.rest.ModifyUser;
 import com.example.rest.User;
 import com.example.rest.Preferences;
 import com.shareburst.R;
+import com.shareburst.main.LoginActivity;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -361,6 +362,12 @@ public class PreferenceActivity extends Activity implements ModifyUser {
         case R.id.action_discard:
             clear();
             return true;
+        case R.id.action_logout:
+        	UserName.clearUserName(getApplicationContext());
+    		Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+    		startActivity(i);
+    		finish();
+            return true;
         default:
             return super.onOptionsItemSelected(item);
 		}
@@ -386,7 +393,7 @@ public class PreferenceActivity extends Activity implements ModifyUser {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
+			View rootView = inflater.inflate(R.layout.fragment_main2, container,
 					false);
 			//Resources res = getResources();
 			//Drawable shape = res.getDrawable(R.drawable.rectangle_level_list);

@@ -4,6 +4,7 @@ import com.example.rest.ModifyUser;
 import com.example.rest.User;
 import com.shareburst.R;
 import com.shareburst.group.GroupsActivity;
+import com.shareburst.preference.PreferenceActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -33,6 +34,7 @@ public class LoginActivity extends Activity implements ModifyUser {
 	 */
 	private LoginUser mAuthTask = null;
 	User user;
+	boolean newUser = false;
 
 	// Values for email and password at the time of the login attempt.
 	private String mUserName;
@@ -116,6 +118,8 @@ public class LoginActivity extends Activity implements ModifyUser {
 				return;
 			}
 		
+			newUser = true;
+			
 			attemptLogin();
 		}
 	}
@@ -180,6 +184,7 @@ public class LoginActivity extends Activity implements ModifyUser {
 
 		//UserName.getUser().setPassword(mPassword);
 		Intent intent = new Intent(this, GroupsActivity.class);
+		intent.putExtra("newUser", newUser);
 		startActivity(intent);
 		finish();
 	}

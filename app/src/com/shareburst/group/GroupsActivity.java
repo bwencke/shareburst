@@ -35,6 +35,12 @@ public class GroupsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_groups);
 		
+		boolean newUser = getIntent().getBooleanExtra("newUser", false);
+		if(newUser) {
+			Intent i = new Intent(this, PreferenceActivity.class);
+			startActivity(i);
+		}
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();

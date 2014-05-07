@@ -54,7 +54,7 @@ public class MainActivity extends Activity implements ModifyUser {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
+			View rootView = inflater.inflate(R.layout.fragment_main2, container,
 					false);
 			return rootView;
 		}
